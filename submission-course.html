@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Embracing Submission — Daily Journey</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Georgia',serif;background:#fdf6f0;color:#4a2838;min-height:100vh;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ── HEADER ── */
+  .header{background:linear-gradient(135deg,#e8c9c9 0%,#d4b8d8 50%,#c9d4e8 100%);padding:24px 20px 20px;text-align:center;border-bottom:1px solid rgba(180,140,160,.2);position:relative;}
+  .header-eyebrow{font-size:11px;letter-spacing:.2em;color:#9a7080;text-transform:uppercase;margin-bottom:6px;}
+  .header-title{font-size:26px;color:#5a3848;font-weight:normal;font-style:italic;margin-bottom:2px;}
+  .header-sub{font-size:13px;color:#7a5868;margin-bottom:16px;}
+  .header-actions{position:absolute;top:16px;right:16px;display:flex;gap:8px;}
+  .icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,160,180,.4);background:rgba(255,255,255,.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+  .icon-btn:hover{background:rgba(255,255,255,.8);}
+
+  /* ring */
+  .ring-wrap{display:flex;align-items:center;justify-content:center;gap:20px;max-width:360px;margin:0 auto;}
+  .ring-svg{flex-shrink:0;}
+  .ring-center{font-size:20px;font-weight:bold;color:#9a3860;font-family:'Georgia',serif;}
+  .ring-label{font-size:10px;color:#9a7080;letter-spacing:.1em;text-transform:uppercase;}
+  .ring-stats{text-align:left;}
+  .ring-stat{font-size:12px;color:#7a5868;margin-bottom:3px;}
+  .ring-stat span{font-weight:bold;color:#5a3848;}
+
+  /* banner */
+  .banner{margin:12px 20px 0;border-radius:12px;padding:10px 16px;font-size:13px;font-style:italic;text-align:center;transition:all .5s;}
+
+  /* ── TABS ── */
+  .tabs{display:flex;border-bottom:1px solid #e8d4d4;background:#fff9f7;overflow-x:auto;}
+  .tab-btn{flex:1;min-width:60px;padding:11px 4px;border:none;background:none;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#b09090;border-bottom:2px solid transparent;font-family:'Georgia',serif;transition:all .2s;white-space:nowrap;}
+  .tab-btn.active{color:#9a3860;border-bottom-color:#9a3860;}
+
+  /* ── CARDS ── */
+  .page{padding:14px;max-width:600px;margin:0 auto;}
+  .card{background:#fff;border-radius:16px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 12px rgba(160,100,120,.07);border:1px solid #f0e4e4;transition:border .3s;}
+  .card.complete{border-color:#c9a5b4;}
+  .card-header{width:100%;padding:14px 16px;display:flex;align-items:center;gap:12px;background:none;border:none;text-align:left;}
+  .card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:background .3s;}
+  .card-title{font-size:14px;font-weight:bold;color:#4a2838;font-style:italic;}
+  .card-sub{font-size:11px;color:#9a8090;margin-bottom:5px;}
+  .card-prog-track{background:#f5eeee;border-radius:10px;height:5px;overflow:hidden;}
+  .card-prog-fill{height:100%;border-radius:10px;transition:width .4s ease;}
+  .card-count{font-size:11px;color:#9a7080;margin-left:auto;flex-shrink:0;}
+  .chevron{color:#9a7080;font-size:11px;transition:transform .2s;margin-left:4px;}
+  .chevron.open{transform:rotate(180deg);}
+  .card-body{padding:0 16px 14px;}
+
+  /* tasks */
+  .task-row{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid #f5eeee;}
+  .task-row:last-child{border-bottom:none;}
+  .task-check{width:20px;height:20px;border-radius:6px;flex-shrink:0;margin-top:2px;border:2px solid #d4b0b8;background:transparent;display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer;}
+  .task-check.done{border:none;}
+  .task-check.done::after{content:'✓';color:#fff;font-size:12px;}
+  .task-text{font-size:13px;color:#5a3848;line-height:1.5;cursor:pointer;transition:all .2s;}
+  .task-text.done{color:#b09090;text-decoration:line-through;}
+
+  /* habits summary grid */
+  .habit-grid{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+  .habit-pip{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid transparent;transition:all .3s;}
+
+  /* ── PROGRESS TAB ── */
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+  .stat-card{background:#fff;border-radius:14px;padding:14px;text-align:center;border:1px solid #f0e4e4;}
+  .stat-val{font-size:24px;font-weight:bold;color:#9a3860;font-style:italic;}
+  .stat-lbl{font-size:11px;color:#9a8090;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;}
+
+  .chart-wrap{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid #f0e4e4;}
+  .chart-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
+  .bar-chart{display:flex;align-items:flex-end;gap:4px;height:80px;}
+  .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .bar{width:100%;border-radius:4px 4px 0 0;transition:height .5s ease;min-height:2px;}
+  .bar-lbl{font-size:9px;color:#b09090;text-align:center;}
+
+  .history-list{background:#fff;border-radius:16px;padding:16px;border:1px solid #f0e4e4;}
+  .history-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
+  .history-item{padding:10px 0;border-bottom:1px solid #f5eeee;}
+  .history-item:last-child{border-bottom:none;}
+  .history-row{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+  .history-date{font-size:12px;color:#9a7080;}
+  .history-score{font-size:14px;font-weight:bold;color:#9a3860;font-style:italic;}
+  .history-rating{font-size:11px;padding:2px 8px;border-radius:20px;background:#f5e8ee;color:#9a5868;}
+  .history-note{font-size:12px;color:#7a6070;font-style:italic;padding-left:4px;}
+  .mini-bar{height:4px;border-radius:2px;background:#f5eeee;margin-top:4px;overflow:hidden;}
+  .mini-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#c9829a,#9a82c9);transition:width .4s;}
+
+  /* ── MODAL ── */
+  .modal-overlay{position:fixed;inset:0;background:rgba(80,30,50,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
+  .modal{background:#fdf6f0;border-radius:24px 24px 0 0;padding:24px 20px 32px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;}
+  .modal-title{font-size:20px;font-style:italic;color:#4a2838;margin-bottom:4px;}
+  .modal-sub{font-size:13px;color:#9a7080;margin-bottom:20px;}
+  .modal-score-big{font-size:48px;font-weight:bold;color:#9a3860;font-style:italic;text-align:center;line-height:1;}
+  .modal-rating{text-align:center;font-size:16px;color:#5a3848;margin:6px 0 20px;font-style:italic;}
+  .modal-section{margin-bottom:18px;}
+  .modal-section-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#9a7080;margin-bottom:10px;}
+  .modal-habit-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .modal-habit-name{font-size:13px;color:#5a3848;width:160px;flex-shrink:0;}
+  .modal-habit-track{flex:1;background:#f5eeee;border-radius:4px;height:6px;overflow:hidden;}
+  .modal-habit-fill{height:100%;border-radius:4px;transition:width .5s;}
+  .modal-habit-pct{font-size:12px;color:#9a7080;width:30px;text-align:right;}
+  .miss-list{background:#fff5f0;border-radius:12px;padding:12px;}
+  .miss-item{font-size:13px;color:#9a4858;padding:4px 0;border-bottom:1px solid #f5e8e8;}
+  .miss-item:last-child{border-bottom:none;}
+  .journal-area{width:100%;border:1px solid #e4d4dc;border-radius:12px;padding:12px;font-family:'Georgia',serif;font-size:13px;color:#5a3848;background:#fff;resize:vertical;min-height:80px;outline:none;}
+  .save-btn{width:100%;padding:14px;background:linear-gradient(135deg,#c9829a,#9a82c9);color:#fff;border:none;border-radius:14px;font-size:15px;font-family:'Georgia',serif;font-style:italic;margin-top:12px;transition:opacity .2s;}
+  .save-btn:hover{opacity:.9;}
+  .close-btn{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;color:#9a7080;cursor:pointer;}
+
+  /* ── MORNING REVIEW ── */
+  .review-score{background:linear-gradient(135deg,#f5e8f0,#e8f0f5);border-radius:16px;padding:20px;text-align:center;margin-bottom:16px;}
+  .review-score-val{font-size:40px;font-weight:bold;color:#9a3860;font-style:italic;}
+  .review-score-lbl{font-size:13px;color:#7a5868;}
+  .focus-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;border-left:3px solid #c9829a;}
+  .focus-num{font-size:11px;color:#c9829a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+  .focus-text{font-size:14px;color:#4a2838;font-style:italic;}
+
+  .hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-actions">
+    <button class="icon-btn" id="btn-morning" title="Morning Review">🌅</button>
+    <button class="icon-btn" id="btn-eod" title="End of Day Summary">🌙</button>
+  </div>
+  <div class="header-eyebrow">Your Journey</div>
+  <div class="header-title">Embracing Submission</div>
+  <div class="header-sub">A course for the wife choosing strength through softness</div>
+  <div class="ring-wrap">
+    <svg class="ring-svg" width="72" height="72" viewBox="0 0 72 72">
+      <circle cx="36" cy="36" r="30" fill="none" stroke="#f0dde6" stroke-width="7"/>
+      <circle id="ring-arc" cx="36" cy="36" r="30" fill="none" stroke="url(#rg)" stroke-width="7"
+        stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5"
+        transform="rotate(-90 36 36)" style="transition:stroke-dashoffset .6s ease;"/>
+      <defs>
+        <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#c9829a"/>
+          <stop offset="100%" stop-color="#9a82c9"/>
+        </linearGradient>
+      </defs>
+      <text x="36" y="40" text-anchor="middle" font-size="14" font-family="Georgia,serif" font-weight="bold" fill="#9a3860" id="ring-pct-text">0%</text>
+    </svg>
+    <div class="ring-stats">
+      <div class="ring-stat">Today: <span id="stat-today-done">0</span> / <span id="stat-today-total">0</span> tasks</div>
+      <div class="ring-stat">Streak: <span id="stat-streak">0</span> days 🔥</div>
+      <div class="ring-stat">7-day avg: <span id="stat-avg">—</span></div>
+    </div>
+  </div>
+  <div class="banner" id="motivation-banner"></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" data-tab="habits">🌿 Habits</button>
+  <button class="tab-btn" data-tab="course">📋 Course</button>
+  <button class="tab-btn" data-tab="affirmations">✨ Affirm</button>
+  <button class="tab-btn" data-tab="progress">📈 Progress</button>
+</div>
+
+<!-- ═══ HABITS TAB ═══ -->
+<div id="tab-habits" class="page">
+  <div class="card" style="border:none;background:linear-gradient(135deg,#f5e8f0,#e8f0f5);">
+    <div style="padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div>
+          <div style="font-size:15px;font-style:italic;color:#4a2838;font-weight:bold;">Today's Habits</div>
+          <div style="font-size:12px;color:#9a7080;" id="habits-summary-text">0 of 40 tasks completed</div>
+        </div>
+      </div>
+      <div class="habit-grid" id="habit-pip-grid"></div>
+    </div>
+  </div>
+  <div id="habits-container"></div>
+</div>
+
+<!-- ═══ COURSE TAB ═══ -->
+<div id="tab-course" class="page hidden">
+  <div id="course-container"></div>
+</div>
+
+<!-- ═══ AFFIRMATIONS TAB ═══ -->
+<div id="tab-affirmations" class="page hidden" style="max-width:500px;">
+  <div style="background:linear-gradient(135deg,#f5e6f0,#e6eef5);border-radius:24px;padding:40px 24px;text-align:center;margin-bottom:16px;min-height:160px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-size:28px;margin-bottom:12px;">🌸</div>
+    <p style="font-size:20px;color:#5a3848;font-style:italic;line-height:1.6;margin:0;" id="affirm-display"></p>
+  </div>
+  <p style="color:#9a8090;font-size:12px;margin-bottom:14px;text-align:center;">Tap to set as your focus</p>
+  <div id="affirm-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+</div>
+
+<!-- ═══ PROGRESS TAB ═══ -->
+<div id="tab-progress" class="page hidden">
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-val" id="prog-streak">0</div><div class="stat-lbl">Day Streak 🔥</div></div>
+    <div class="stat-card"><div class="stat-val" id="prog-avg7">—</div><div class="stat-lbl">7-Day Avg</div></div>
+    <div class="stat-card"><div class="stat-val" id="prog-best">—</div><div class="stat-lbl">Best Day</div></div>
+    <div class="stat-card"><div class="stat-val" id="prog-total">0</div><div class="stat-lbl">Days Logged</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">14-Day Progress Chart</div>
+    <div class="bar-chart" id="prog-chart"></div>
+    <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;">
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#c9829a;display:inline-block;"></span>≥80% Perfect</span>
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#a5b4d4;display:inline-block;"></span>≥60% Strong</span>
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#c4d4a5;display:inline-block;"></span>≥40% Growing</span>
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#e8d0c4;display:inline-block;"></span>&lt;40% Starting</span>
+    </div>
+  </div>
+  <div class="history-list">
+    <div class="history-title">Daily History Log</div>
+    <div id="history-log"></div>
+  </div>
+</div>
+
+<!-- ═══ END OF DAY MODAL ═══ -->
+<div class="modal-overlay hidden" id="eod-modal">
+  <div class="modal" style="position:relative;">
+    <button class="close-btn" id="eod-close">×</button>
+    <div class="modal-title">🌙 End of Day Summary</div>
+    <div class="modal-sub" id="eod-date-label"></div>
+    <div class="modal-score-big" id="eod-score"></div>
+    <div class="modal-rating" id="eod-rating"></div>
+    <div class="mini-bar" style="max-width:200px;margin:0 auto 20px;"><div class="mini-bar-fill" id="eod-score-bar"></div></div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Per-Habit Breakdown</div>
+      <div id="eod-habit-breakdown"></div>
+    </div>
+
+    <div class="modal-section" id="eod-miss-section">
+      <div class="modal-section-title">🎯 Don't Miss These Tomorrow</div>
+      <div class="miss-list" id="eod-miss-list"></div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">📝 Daily Journal</div>
+      <textarea class="journal-area" id="eod-journal" placeholder="Your win today… a lesson you learned… one thing you'll do better tomorrow…"></textarea>
+    </div>
+
+    <button class="save-btn" id="eod-save">Save & Lock In This Day ✨</button>
+  </div>
+</div>
+
+<!-- ═══ MORNING REVIEW MODAL ═══ -->
+<div class="modal-overlay hidden" id="morning-modal">
+  <div class="modal" style="position:relative;">
+    <button class="close-btn" id="morning-close">×</button>
+    <div class="modal-title">🌅 Morning Review</div>
+    <div class="modal-sub">Start your day with intention</div>
+
+    <div class="review-score" id="morning-yday-block">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#9a7080;margin-bottom:6px;">Yesterday's Score</div>
+      <div class="review-score-val" id="morning-yday-score">—</div>
+      <div class="review-score-lbl" id="morning-yday-rating"></div>
+      <div style="font-size:12px;color:#7a5868;font-style:italic;margin-top:8px;" id="morning-yday-note"></div>
+    </div>
+
+    <div class="stat-grid" style="margin-bottom:16px;">
+      <div class="stat-card"><div class="stat-val" id="mrev-streak">0</div><div class="stat-lbl">Streak 🔥</div></div>
+      <div class="stat-card"><div class="stat-val" id="mrev-avg7">—</div><div class="stat-lbl">7-Day Avg</div></div>
+      <div class="stat-card"><div class="stat-val" id="mrev-avgall">—</div><div class="stat-lbl">All-Time Avg</div></div>
+      <div class="stat-card"><div class="stat-val" id="mrev-days">0</div><div class="stat-lbl">Days Logged</div></div>
+    </div>
+
+    <div class="chart-wrap" style="margin-bottom:16px;">
+      <div class="chart-title">14-Day History</div>
+      <div class="bar-chart" id="mrev-chart"></div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">🎯 Today's 3 Focus Reminders</div>
+      <div id="morning-focus"></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:20px;color:#c4a4b4;font-size:12px;font-style:italic;">
+  Your softness is your strength 🌸
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+const DAILY_HABITS = [
+  { id:"h1", emoji:"🌅", title:"Morning Intention Setting", color:"#e8c4b8",
+    tasks:["Wake up 15 min before him — use quiet time for prayer, meditation, or journaling","Write one specific way you will honor him today in your journal","Read one affirmation aloud to yourself before leaving the bedroom","Prepare his morning coffee or breakfast as an act of loving service","Greet him warmly with a smile, touch, or kind word when he wakes"] },
+  { id:"h2", emoji:"🗣️", title:"Speak Life Over Him", color:"#c8d4b8",
+    tasks:["Give him one specific, sincere compliment about his character or actions today","Send him an encouraging text mid-day — something you genuinely appreciate","When talking to others, speak only well of him","Avoid sarcasm, eye-rolling, or dismissive tones in all conversations with him","End the day by verbally thanking him for one thing he did or provided today"] },
+  { id:"h3", emoji:"👂", title:"Practice Active Listening", color:"#b8c4d4",
+    tasks:["When he speaks, put your phone down and make direct eye contact","Let him finish every sentence — count to 3 silently before responding","Repeat back what he said: 'So what I'm hearing is...' before giving your view","Ask one genuine follow-up question about something he shared","Resist the urge to fix, advise, or redirect — simply receive what he says"] },
+  { id:"h4", emoji:"🍽️", title:"Create a Welcoming Home", color:"#d4b8c8",
+    tasks:["Tidy the main living area before he arrives home so he walks into peace","Light a candle, play soft music, or set a pleasant atmosphere for the evening","Have a meal planned or in progress — even simple shows intentional care","Handle one household task he usually does without being asked","Walk toward him and greet him when he comes home — don't stay seated"] },
+  { id:"h5", emoji:"🧘", title:"Regulate Your Emotions", color:"#c4d4c8",
+    tasks:["Before responding to anything that upsets you, take 5 slow deep breaths first","Journal for 5 minutes when you feel reactive, frustrated, or resentful","Identify the emotion beneath your reaction (fear, hurt, insecurity) and name it","Choose one disagreement today to let go of without making it an issue","Release the day's tensions at night through prayer, stretching, or a gratitude list"] },
+  { id:"h6", emoji:"💞", title:"Physical Affection & Presence", color:"#d4c8b8",
+    tasks:["Initiate physical touch — a hug, hand-hold, or kiss — at least 3 times today","Sit near him when you're both home rather than in separate rooms","Make eye contact and smile at him during a meal or conversation","Dress intentionally today in a way that makes you feel beautiful and confident","Before bed, offer a back rub, foot massage, or simple physical connection"] },
+  { id:"h7", emoji:"🙏", title:"Defer & Trust His Leadership", color:"#b8ccd4",
+    tasks:["Identify one decision coming up and ask for his input before acting","When he makes a call you disagree with, voice your view once calmly — then release it","Avoid taking over a task or situation he has already agreed to handle","Thank him for a decision he made well, even a small one","Pray or reflect on one area where you're growing in trust of his judgment"] },
+  { id:"h8", emoji:"🌙", title:"Evening Connection Ritual", color:"#d4b8d4",
+    tasks:["Put away all screens 30 min before bed to give him your full attention","Ask: 'How can I support you better tomorrow?' and truly listen to his answer","Share one thing you're grateful for about him or your relationship today","End the evening without unresolved conflict — offer peace or apology if needed","Go to bed at the same time as him at least 5 nights a week to maintain closeness"] },
+];
+
+const MODULES = [
+  { id:1, emoji:"🌱", title:"Mindset Foundation", subtitle:"Understanding Your Why", color:"#d4a5a5",
+    tasks:["Reflect on what submission means to you personally","Distinguish submission as strength vs. fear or obligation","Journal: 'What does a thriving, respectful dynamic look like for us?'","Identify 3 areas where you want to soften your approach","Write your personal mission statement for this journey"] },
+  { id:2, emoji:"💬", title:"Communication First", subtitle:"Building the Framework Together", color:"#a5b4d4",
+    tasks:["Have an open conversation with your husband about roles","Discuss what 'leadership' looks like for him","Discuss what 'support' looks like for you","Establish a mutual agreement on your dynamic","Set a monthly check-in date on your calendar"] },
+  { id:3, emoji:"🌸", title:"Daily Practices", subtitle:"Small Acts That Build the Dynamic", color:"#c4d4a5",
+    tasks:["Let him lead on one decision you'd normally control","Practice asking rather than directing today","Express appreciation verbally — at least once today","Prioritize his needs in your morning routine","Avoid countering him in front of others","Check in on his day before sharing yours"] },
+  { id:4, emoji:"💗", title:"Emotional Submission", subtitle:"Softening Your Responses", color:"#d4c4a5",
+    tasks:["Pause before reacting in a disagreement today","Replace 'you always/never' with 'I feel...' statements","Choose deference over defensiveness in a low-stakes moment","Trust his judgment even when you'd do it differently","Practice active listening without preparing a rebuttal"] },
+  { id:5, emoji:"👑", title:"Respecting His Leadership", subtitle:"Following His Lead", color:"#b4a5d4",
+    tasks:["Support one of his decisions publicly today","Avoid undermining him in front of family or friends","Celebrate a win of his and affirm his role","Ask for his input on something you normally handle alone","Speak positively about him to others today"] },
+  { id:6, emoji:"🏡", title:"Physical & Domestic", subtitle:"Creating a Welcoming Home Dynamic", color:"#a5d4c4",
+    tasks:["Make home a peaceful space — declutter one area","Identify his love language and lead with it today","Be intentional about physical affection","Dress and present yourself in a way that honors him","Prepare or arrange something special for him at home"] },
+  { id:7, emoji:"🛡️", title:"Boundaries & Sustainability", subtitle:"Healthy Submission Has Limits", color:"#d4a5b4",
+    tasks:["Write down your non-negotiable boundaries","Communicate your limits clearly and lovingly","Schedule a monthly dynamic check-in","Find a community or book for ongoing support","Affirm: 'My submission is my choice and my strength'"] },
+];
+
+const AFFIRMATIONS = [
+  "My submission is my strength.",
+  "I trust my husband's leadership.",
+  "I choose peace over being right.",
+  "A soft answer turns away conflict.",
+  "My softness is not weakness — it is grace.",
+  "I am building something beautiful, one day at a time.",
+];
+
+const BANNERS = [
+  { min:80, bg:"#e8f5e8", color:"#3a6a3a", text:"✨ Beautiful day — you're showing up fully. Keep going, Mama." },
+  { min:60, bg:"#f0eef8", color:"#4a3a7a", text:"💜 Strong momentum today. Push through — you're almost there." },
+  { min:40, bg:"#fef5e0", color:"#7a5a00", text:"🔥 You've started — now let's build. Every check matters." },
+  { min:20, bg:"#fff0f0", color:"#8a3a3a", text:"💪 Your husband is worth your effort. Rise up and give him your best today." },
+  { min:0,  bg:"#fdf0f5", color:"#9a3860", text:"🌸 Today is wide open. Begin with intention — one check at a time." },
+];
+
+function getRating(pct) {
+  if(pct>=95) return "Perfect Day 🌟";
+  if(pct>=80) return "Strong Day 💜";
+  if(pct>=60) return "Growing Day 🌱";
+  if(pct>=40) return "Steady Day 🌸";
+  if(pct>=20) return "Starting Day 🕯️";
+  return "New Beginning 🌅";
+}
+
+function getBarColor(pct) {
+  if(pct>=80) return "#c9829a";
+  if(pct>=60) return "#a5b4d4";
+  if(pct>=40) return "#c4d4a5";
+  return "#e8d0c4";
+}
+
+function todayKey() {
+  return new Date().toISOString().slice(0,10);
+}
+
+// ═══════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════
+let checked = {};
+let history = []; // [{date, pct, rating, note, habitPcts:[]}]
+let affirmIdx = 0;
+let expandedHabits = {};
+let expandedModules = {1:true};
+
+function loadState() {
+  try {
+    const s = localStorage.getItem('sub_checked_'+todayKey());
+    if(s) checked = JSON.parse(s);
+    const h = localStorage.getItem('sub_history');
+    if(h) history = JSON.parse(h);
+  } catch(e){}
+}
+
+function saveChecked() {
+  try{ localStorage.setItem('sub_checked_'+todayKey(), JSON.stringify(checked)); } catch(e){}
+}
+
+function saveHistory() {
+  try{ localStorage.setItem('sub_history', JSON.stringify(history)); } catch(e){}
+}
+
+// ═══════════════════════════════════════════
+// COMPUTED
+// ═══════════════════════════════════════════
+function habitDone(hab) {
+  return hab.tasks.filter((_,i)=>checked[`hab-${hab.id}-${i}`]).length;
+}
+function habitPct(hab) {
+  return Math.round((habitDone(hab)/hab.tasks.length)*100);
+}
+
+function totalHabitTasks() { return DAILY_HABITS.reduce((a,h)=>a+h.tasks.length,0); }
+function totalHabitDone()  { return DAILY_HABITS.reduce((a,h)=>a+habitDone(h),0); }
+function totalHabitPct()   { return Math.round((totalHabitDone()/totalHabitTasks())*100); }
+
+function moduleDone(mod) { return mod.tasks.filter((_,i)=>checked[`mod-${mod.id}-${i}`]).length; }
+
+function calcStreak() {
+  if(!history.length) return 0;
+  const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date));
+  let streak=0, d=new Date(); d.setHours(0,0,0,0);
+  for(const entry of sorted){
+    const ed=new Date(entry.date+'T00:00:00');
+    const diff=Math.round((d-ed)/(1000*60*60*24));
+    if(diff>1) break;
+    streak++;
+    d=ed;
+  }
+  return streak;
+}
+
+function calcAvg(n) {
+  const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,n);
+  if(!sorted.length) return null;
+  return Math.round(sorted.reduce((a,e)=>a+e.pct,0)/sorted.length);
+}
+
+function calc14Days() {
+  const days=[];
+  for(let i=13;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const key=d.toISOString().slice(0,10);
+    const entry=history.find(e=>e.date===key);
+    days.push({date:key,label:d.toLocaleDateString('en',{month:'numeric',day:'numeric'}),pct:entry?entry.pct:null});
+  }
+  return days;
+}
+
+// ═══════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════
+function renderHeader() {
+  const pct = totalHabitPct();
+  const offset = 188.5 - (188.5 * pct / 100);
+  document.getElementById('ring-arc').style.strokeDashoffset = offset;
+  document.getElementById('ring-pct-text').textContent = pct+'%';
+  document.getElementById('stat-today-done').textContent = totalHabitDone();
+  document.getElementById('stat-today-total').textContent = totalHabitTasks();
+  document.getElementById('stat-streak').textContent = calcStreak();
+  const avg7 = calcAvg(7);
+  document.getElementById('stat-avg').textContent = avg7 !== null ? avg7+'%' : '—';
+
+  const banner = BANNERS.find(b=>pct>=b.min);
+  const el = document.getElementById('motivation-banner');
+  el.textContent = banner.text;
+  el.style.background = banner.bg;
+  el.style.color = banner.color;
+}
+
+function renderHabits() {
+  // pip grid
+  const grid = document.getElementById('habit-pip-grid');
+  grid.innerHTML = DAILY_HABITS.map(h=>{
+    const pct=habitPct(h);
+    return `<div class="habit-pip" title="${h.title}" style="background:${pct===100?h.color:h.color+'50'};border-color:${pct===100?h.color:'transparent'}">${pct===100?'✅':h.emoji}</div>`;
+  }).join('');
+  document.getElementById('habits-summary-text').textContent = `${totalHabitDone()} of ${totalHabitTasks()} tasks completed`;
+
+  const container = document.getElementById('habits-container');
+  container.innerHTML = DAILY_HABITS.map(h=>{
+    const done=habitDone(h), total=h.tasks.length, pct=Math.round(done/total*100);
+    const open=expandedHabits[h.id];
+    return `<div class="card ${done===total?'complete':''}" id="hcard-${h.id}">
+      <button class="card-header" onclick="toggleHabit('${h.id}')">
+        <div class="card-icon" style="background:${done===total?h.color:h.color+'50'}">${done===total?'✅':h.emoji}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-title">${h.title}</div>
+            <div class="card-count">${done}/${total}</div>
+          </div>
+          <div class="card-prog-track"><div class="card-prog-fill" style="width:${pct}%;background:linear-gradient(90deg,${h.color},${h.color}bb)"></div></div>
+        </div>
+        <span class="chevron ${open?'open':''}">▼</span>
+      </button>
+      ${open?`<div class="card-body">${h.tasks.map((t,i)=>{
+        const k=`hab-${h.id}-${i}`, done2=checked[k];
+        return `<div class="task-row">
+          <div class="task-check ${done2?'done':''}" style="${done2?'background:linear-gradient(135deg,'+h.color+','+h.color+'99)':''}" onclick="toggleTask('${k}')"></div>
+          <div class="task-text ${done2?'done':''}" onclick="toggleTask('${k}')">${t}</div>
+        </div>`;
+      }).join('')}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function renderCourse() {
+  const container = document.getElementById('course-container');
+  container.innerHTML = MODULES.map(mod=>{
+    const done=moduleDone(mod), total=mod.tasks.length, pct=Math.round(done/total*100);
+    const open=expandedModules[mod.id];
+    return `<div class="card ${done===total?'complete':''}">
+      <button class="card-header" onclick="toggleModule(${mod.id})">
+        <div class="card-icon" style="background:${mod.color}40">${done===total?'✅':mod.emoji}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-title">Mod ${mod.id}: ${mod.title}</div>
+            <div class="card-count">${done}/${total}</div>
+          </div>
+          <div class="card-sub">${mod.subtitle}</div>
+          <div class="card-prog-track"><div class="card-prog-fill" style="width:${pct}%;background:linear-gradient(90deg,${mod.color},${mod.color}cc)"></div></div>
+        </div>
+        <span class="chevron ${open?'open':''}">▼</span>
+      </button>
+      ${open?`<div class="card-body">${mod.tasks.map((t,i)=>{
+        const k=`mod-${mod.id}-${i}`, isDone=checked[k];
+        return `<div class="task-row">
+          <div class="task-check ${isDone?'done':''}" style="${isDone?'background:linear-gradient(135deg,'+mod.color+','+mod.color+'99)':''}" onclick="toggleTask('${k}')"></div>
+          <div class="task-text ${isDone?'done':''}" onclick="toggleTask('${k}')">${t}</div>
+        </div>`;
+      }).join('')}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function renderAffirmations() {
+  document.getElementById('affirm-display').textContent = `"${AFFIRMATIONS[affirmIdx]}"`;
+  document.getElementById('affirm-list').innerHTML = AFFIRMATIONS.map((a,i)=>`
+    <button onclick="setAffirm(${i})" style="padding:12px 16px;background:${i===affirmIdx?'linear-gradient(135deg,#e8c9d4,#d4c9e8)':'#fff'};border:1px solid ${i===affirmIdx?'#c9a5b4':'#f0e4e4'};border-radius:12px;cursor:pointer;font-size:13px;color:${i===affirmIdx?'#5a2848':'#7a5868'};font-style:italic;font-family:Georgia,serif;text-align:left;transition:all .2s;width:100%;">
+      ${i===affirmIdx?'✨ ':'   '}${a}
+    </button>`).join('');
+}
+
+function renderProgressTab() {
+  const streak=calcStreak(), avg7=calcAvg(7), avgAll=calcAvg(999);
+  const best=history.length?Math.max(...history.map(e=>e.pct)):null;
+  document.getElementById('prog-streak').textContent=streak;
+  document.getElementById('prog-avg7').textContent=avg7!==null?avg7+'%':'—';
+  document.getElementById('prog-best').textContent=best!==null?best+'%':'—';
+  document.getElementById('prog-total').textContent=history.length;
+  renderChart('prog-chart');
+  renderHistoryLog();
+}
+
+function renderChart(elId) {
+  const days=calc14Days();
+  const el=document.getElementById(elId);
+  if(!el) return;
+  el.innerHTML=days.map(d=>{
+    const h=d.pct!==null?Math.max(Math.round(d.pct*0.7),4):4;
+    const col=d.pct!==null?getBarColor(d.pct):'#f0e4e4';
+    return `<div class="bar-col">
+      <div class="bar" style="height:${h}px;background:${col};"></div>
+      <div class="bar-lbl">${d.label}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderHistoryLog() {
+  const el=document.getElementById('history-log');
+  if(!el) return;
+  const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date));
+  if(!sorted.length){ el.innerHTML='<div style="font-size:13px;color:#b09090;font-style:italic;padding:8px 0;">No days logged yet. Complete your first day and save it!</div>'; return; }
+  el.innerHTML=sorted.map(e=>`
+    <div class="history-item">
+      <div class="history-row">
+        <div class="history-date">${new Date(e.date+'T00:00:00').toLocaleDateString('en',{weekday:'short',month:'short',day:'numeric'})}</div>
+        <div class="history-score">${e.pct}%</div>
+        <div class="history-rating">${e.rating}</div>
+      </div>
+      <div class="mini-bar"><div class="mini-bar-fill" style="width:${e.pct}%"></div></div>
+      ${e.note?`<div class="history-note">"${e.note}"</div>`:''}
+    </div>`).join('');
+}
+
+function renderAll() {
+  renderHeader();
+  renderHabits();
+  renderCourse();
+  renderAffirmations();
+  renderProgressTab();
+}
+
+// ═══════════════════════════════════════════
+// ACTIONS
+// ═══════════════════════════════════════════
+function toggleTask(key) {
+  checked[key] = !checked[key];
+  saveChecked();
+  renderAll();
+}
+
+function toggleHabit(id) {
+  expandedHabits[id]=!expandedHabits[id];
+  renderHabits();
+}
+
+function toggleModule(id) {
+  expandedModules[id]=!expandedModules[id];
+  renderCourse();
+}
+
+function setAffirm(i) { affirmIdx=i; renderAffirmations(); }
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab=btn.dataset.tab;
+    ['habits','course','affirmations','progress'].forEach(t=>{
+      document.getElementById('tab-'+t).classList.toggle('hidden',t!==tab);
+    });
+    if(tab==='progress') renderProgressTab();
+  });
+});
+
+// ═══════════════════════════════════════════
+// END OF DAY MODAL
+// ═══════════════════════════════════════════
+function openEOD() {
+  const pct=totalHabitPct();
+  document.getElementById('eod-date-label').textContent=new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});
+  document.getElementById('eod-score').textContent=pct+'%';
+  document.getElementById('eod-rating').textContent=getRating(pct);
+  document.getElementById('eod-score-bar').style.width=pct+'%';
+
+  // habit breakdown
+  document.getElementById('eod-habit-breakdown').innerHTML=DAILY_HABITS.map(h=>{
+    const p=habitPct(h);
+    return `<div class="modal-habit-row">
+      <div class="modal-habit-name">${h.emoji} ${h.title}</div>
+      <div class="modal-habit-track"><div class="modal-habit-fill" style="width:${p}%;background:${h.color}"></div></div>
+      <div class="modal-habit-pct">${p}%</div>
+    </div>`;
+  }).join('');
+
+  // missed tasks
+  const missed=[];
+  DAILY_HABITS.forEach(h=>{
+    h.tasks.forEach((t,i)=>{ if(!checked[`hab-${h.id}-${i}`]) missed.push(`${h.emoji} ${t}`); });
+  });
+  if(missed.length){
+    document.getElementById('eod-miss-section').classList.remove('hidden');
+    document.getElementById('eod-miss-list').innerHTML=missed.slice(0,6).map(m=>`<div class="miss-item">• ${m}</div>`).join('');
+  } else {
+    document.getElementById('eod-miss-section').classList.add('hidden');
+  }
+
+  // restore saved note
+  const saved=history.find(e=>e.date===todayKey());
+  document.getElementById('eod-journal').value=saved?saved.note||'':'';
+
+  document.getElementById('eod-modal').classList.remove('hidden');
+}
+
+document.getElementById('btn-eod').addEventListener('click',openEOD);
+document.getElementById('eod-close').addEventListener('click',()=>document.getElementById('eod-modal').classList.add('hidden'));
+document.getElementById('eod-save').addEventListener('click',()=>{
+  const pct=totalHabitPct();
+  const note=document.getElementById('eod-journal').value.trim();
+  const entry={date:todayKey(),pct,rating:getRating(pct),note,habitPcts:DAILY_HABITS.map(h=>habitPct(h))};
+  const idx=history.findIndex(e=>e.date===todayKey());
+  if(idx>=0) history[idx]=entry; else history.push(entry);
+  saveHistory();
+  document.getElementById('eod-modal').classList.add('hidden');
+  renderAll();
+});
+
+// ═══════════════════════════════════════════
+// MORNING REVIEW MODAL
+// ═══════════════════════════════════════════
+function openMorning() {
+  const yesterday=new Date(); yesterday.setDate(yesterday.getDate()-1);
+  const ydayKey=yesterday.toISOString().slice(0,10);
+  const ydayEntry=history.find(e=>e.date===ydayKey);
+
+  if(ydayEntry){
+    document.getElementById('morning-yday-score').textContent=ydayEntry.pct+'%';
+    document.getElementById('morning-yday-rating').textContent=ydayEntry.rating;
+    document.getElementById('morning-yday-note').textContent=ydayEntry.note?`"${ydayEntry.note}"`:'No note recorded.';
+  } else {
+    document.getElementById('morning-yday-score').textContent='—';
+    document.getElementById('morning-yday-rating').textContent='No entry saved';
+    document.getElementById('morning-yday-note').textContent='';
+  }
+
+  const streak=calcStreak(), avg7=calcAvg(7), avgAll=calcAvg(999);
+  document.getElementById('mrev-streak').textContent=streak;
+  document.getElementById('mrev-avg7').textContent=avg7!==null?avg7+'%':'—';
+  document.getElementById('mrev-avgall').textContent=avgAll!==null?avgAll+'%':'—';
+  document.getElementById('mrev-days').textContent=history.length;
+
+  renderChart('mrev-chart');
+
+  // 3 focus reminders — pick lowest-scoring habits from yesterday
+  const focuses=ydayEntry && ydayEntry.habitPcts
+    ? DAILY_HABITS.map((h,i)=>({h,p:ydayEntry.habitPcts[i]||0})).sort((a,b)=>a.p-b.p).slice(0,3)
+    : DAILY_HABITS.slice(0,3).map(h=>({h,p:0}));
+  document.getElementById('morning-focus').innerHTML=focuses.map((f,i)=>`
+    <div class="focus-card" style="border-left-color:${f.h.color}">
+      <div class="focus-num">Focus ${i+1}</div>
+      <div class="focus-text">${f.h.emoji} ${f.h.title} — ${f.p<100?'Push for full completion today':'Maintain your momentum!'}</div>
+    </div>`).join('');
+
+  document.getElementById('morning-modal').classList.remove('hidden');
+}
+
+document.getElementById('btn-morning').addEventListener('click',openMorning);
+document.getElementById('morning-close').addEventListener('click',()=>document.getElementById('morning-modal').classList.add('hidden'));
+
+// close modals on overlay click
+['eod-modal','morning-modal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',function(e){
+    if(e.target===this) this.classList.add('hidden');
+  });
+});
+
+// affirmation auto-rotate
+setInterval(()=>{ affirmIdx=(affirmIdx+1)%AFFIRMATIONS.length; renderAffirmations(); },5000);
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+loadState();
+renderAll();
+</script>
+</body>
+</html>
