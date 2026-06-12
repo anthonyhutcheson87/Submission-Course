@@ -8,7 +8,7 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'Georgia',serif;background:#fdf6f0;color:#4a2838;min-height:100vh;}
   button{font-family:inherit;cursor:pointer;}
-
+ 
   /* ── HEADER ── */
   .header{background:linear-gradient(135deg,#e8c9c9 0%,#d4b8d8 50%,#c9d4e8 100%);padding:24px 20px 20px;text-align:center;border-bottom:1px solid rgba(180,140,160,.2);position:relative;}
   .header-eyebrow{font-size:11px;letter-spacing:.2em;color:#9a7080;text-transform:uppercase;margin-bottom:6px;}
@@ -17,7 +17,7 @@
   .header-actions{position:absolute;top:16px;right:16px;display:flex;gap:8px;}
   .icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,160,180,.4);background:rgba(255,255,255,.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
   .icon-btn:hover{background:rgba(255,255,255,.8);}
-
+ 
   /* ring */
   .ring-wrap{display:flex;align-items:center;justify-content:center;gap:20px;max-width:360px;margin:0 auto;}
   .ring-svg{flex-shrink:0;}
@@ -26,15 +26,15 @@
   .ring-stats{text-align:left;}
   .ring-stat{font-size:12px;color:#7a5868;margin-bottom:3px;}
   .ring-stat span{font-weight:bold;color:#5a3848;}
-
+ 
   /* banner */
   .banner{margin:12px 20px 0;border-radius:12px;padding:10px 16px;font-size:13px;font-style:italic;text-align:center;transition:all .5s;}
-
+ 
   /* ── TABS ── */
   .tabs{display:flex;border-bottom:1px solid #e8d4d4;background:#fff9f7;overflow-x:auto;}
   .tab-btn{flex:1;min-width:60px;padding:11px 4px;border:none;background:none;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#b09090;border-bottom:2px solid transparent;font-family:'Georgia',serif;transition:all .2s;white-space:nowrap;}
   .tab-btn.active{color:#9a3860;border-bottom-color:#9a3860;}
-
+ 
   /* ── CARDS ── */
   .page{padding:14px;max-width:600px;margin:0 auto;}
   .card{background:#fff;border-radius:16px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 12px rgba(160,100,120,.07);border:1px solid #f0e4e4;transition:border .3s;}
@@ -49,7 +49,7 @@
   .chevron{color:#9a7080;font-size:11px;transition:transform .2s;margin-left:4px;}
   .chevron.open{transform:rotate(180deg);}
   .card-body{padding:0 16px 14px;}
-
+ 
   /* tasks */
   .task-row{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid #f5eeee;}
   .task-row:last-child{border-bottom:none;}
@@ -58,24 +58,24 @@
   .task-check.done::after{content:'✓';color:#fff;font-size:12px;}
   .task-text{font-size:13px;color:#5a3848;line-height:1.5;cursor:pointer;transition:all .2s;}
   .task-text.done{color:#b09090;text-decoration:line-through;}
-
+ 
   /* habits summary grid */
   .habit-grid{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
   .habit-pip{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid transparent;transition:all .3s;}
-
+ 
   /* ── PROGRESS TAB ── */
   .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
   .stat-card{background:#fff;border-radius:14px;padding:14px;text-align:center;border:1px solid #f0e4e4;}
   .stat-val{font-size:24px;font-weight:bold;color:#9a3860;font-style:italic;}
   .stat-lbl{font-size:11px;color:#9a8090;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;}
-
+ 
   .chart-wrap{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid #f0e4e4;}
   .chart-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
   .bar-chart{display:flex;align-items:flex-end;gap:4px;height:80px;}
   .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
   .bar{width:100%;border-radius:4px 4px 0 0;transition:height .5s ease;min-height:2px;}
   .bar-lbl{font-size:9px;color:#b09090;text-align:center;}
-
+ 
   .history-list{background:#fff;border-radius:16px;padding:16px;border:1px solid #f0e4e4;}
   .history-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
   .history-item{padding:10px 0;border-bottom:1px solid #f5eeee;}
@@ -87,7 +87,7 @@
   .history-note{font-size:12px;color:#7a6070;font-style:italic;padding-left:4px;}
   .mini-bar{height:4px;border-radius:2px;background:#f5eeee;margin-top:4px;overflow:hidden;}
   .mini-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#c9829a,#9a82c9);transition:width .4s;}
-
+ 
   /* ── MODAL ── */
   .modal-overlay{position:fixed;inset:0;background:rgba(80,30,50,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
   .modal{background:#fdf6f0;border-radius:24px 24px 0 0;padding:24px 20px 32px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;}
@@ -109,7 +109,7 @@
   .save-btn{width:100%;padding:14px;background:linear-gradient(135deg,#c9829a,#9a82c9);color:#fff;border:none;border-radius:14px;font-size:15px;font-family:'Georgia',serif;font-style:italic;margin-top:12px;transition:opacity .2s;}
   .save-btn:hover{opacity:.9;}
   .close-btn{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;color:#9a7080;cursor:pointer;}
-
+ 
   /* ── MORNING REVIEW ── */
   .review-score{background:linear-gradient(135deg,#f5e8f0,#e8f0f5);border-radius:16px;padding:20px;text-align:center;margin-bottom:16px;}
   .review-score-val{font-size:40px;font-weight:bold;color:#9a3860;font-style:italic;}
@@ -117,12 +117,33 @@
   .focus-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;border-left:3px solid #c9829a;}
   .focus-num{font-size:11px;color:#c9829a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
   .focus-text{font-size:14px;color:#4a2838;font-style:italic;}
-
+ 
   .hidden{display:none!important;}
+ 
+  /* ── JOURNAL TAB ── */
+  .journal-tab-area{width:100%;border:1px solid #e4d4dc;border-radius:14px;padding:14px;font-family:'Georgia',serif;font-size:14px;color:#5a3848;background:#fff;resize:vertical;min-height:180px;outline:none;line-height:1.7;transition:border .2s;}
+  .journal-tab-area:focus{border-color:#c9829a;}
+  .journal-entry-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:10px;border:1px solid #f0e4e4;box-shadow:0 2px 8px rgba(160,100,120,.06);}
+  .journal-entry-date{font-size:11px;color:#9a7080;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+  .journal-entry-mood{font-size:18px;margin-right:6px;}
+  .journal-entry-body{font-size:13px;color:#5a3848;line-height:1.6;font-style:italic;white-space:pre-wrap;}
+  .journal-entry-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+  .journal-tag{font-size:11px;padding:2px 9px;border-radius:20px;background:#f5e8ee;color:#9a5868;}
+  .mood-btn{width:38px;height:38px;border-radius:50%;border:2px solid transparent;background:#f5eeee;font-size:18px;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+  .mood-btn.selected{border-color:#c9829a;background:#fdf0f5;}
+  .prompt-chip{background:#f5e8f0;border:1px solid #e4d4dc;border-radius:20px;padding:6px 14px;font-size:12px;color:#7a4868;font-family:'Georgia',serif;font-style:italic;cursor:pointer;transition:all .2s;text-align:left;}
+  .prompt-chip:hover{background:#ecdce8;border-color:#c9a5b4;}
+  .autosave-dot{width:8px;height:8px;border-radius:50%;background:#c4d4a5;display:inline-block;margin-right:6px;transition:background .3s;}
+  .autosave-dot.saving{background:#f0d090;}
+  .autosave-dot.saved{background:#a5c4a5;}
+  .search-input{width:100%;border:1px solid #e4d4dc;border-radius:12px;padding:10px 14px;font-family:'Georgia',serif;font-size:13px;color:#5a3848;background:#fff;outline:none;margin-bottom:12px;}
+  .search-input:focus{border-color:#c9829a;}
+  .del-btn{background:none;border:none;color:#d4a5a5;font-size:14px;cursor:pointer;padding:2px 6px;border-radius:6px;transition:all .2s;}
+  .del-btn:hover{background:#fff0f0;color:#c9829a;}
 </style>
 </head>
 <body>
-
+ 
 <!-- HEADER -->
 <div class="header">
   <div class="header-actions">
@@ -154,15 +175,16 @@
   </div>
   <div class="banner" id="motivation-banner"></div>
 </div>
-
+ 
 <!-- TABS -->
 <div class="tabs">
   <button class="tab-btn active" data-tab="habits">🌿 Habits</button>
   <button class="tab-btn" data-tab="course">📋 Course</button>
   <button class="tab-btn" data-tab="affirmations">✨ Affirm</button>
+  <button class="tab-btn" data-tab="journal">📓 Journal</button>
   <button class="tab-btn" data-tab="progress">📈 Progress</button>
 </div>
-
+ 
 <!-- ═══ HABITS TAB ═══ -->
 <div id="tab-habits" class="page">
   <div class="card" style="border:none;background:linear-gradient(135deg,#f5e8f0,#e8f0f5);">
@@ -178,12 +200,12 @@
   </div>
   <div id="habits-container"></div>
 </div>
-
+ 
 <!-- ═══ COURSE TAB ═══ -->
 <div id="tab-course" class="page hidden">
   <div id="course-container"></div>
 </div>
-
+ 
 <!-- ═══ AFFIRMATIONS TAB ═══ -->
 <div id="tab-affirmations" class="page hidden" style="max-width:500px;">
   <div style="background:linear-gradient(135deg,#f5e6f0,#e6eef5);border-radius:24px;padding:40px 24px;text-align:center;margin-bottom:16px;min-height:160px;display:flex;flex-direction:column;justify-content:center;">
@@ -193,7 +215,64 @@
   <p style="color:#9a8090;font-size:12px;margin-bottom:14px;text-align:center;">Tap to set as your focus</p>
   <div id="affirm-list" style="display:flex;flex-direction:column;gap:8px;"></div>
 </div>
-
+ 
+<!-- ═══ JOURNAL TAB ═══ -->
+<div id="tab-journal" class="page hidden">
+ 
+  <!-- New Entry Card -->
+  <div style="background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid #f0e4e4;box-shadow:0 2px 12px rgba(160,100,120,.07);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <div style="font-size:15px;font-style:italic;color:#4a2838;font-weight:bold;">Today's Entry</div>
+        <div style="font-size:11px;color:#9a7080;" id="journal-date-display"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span class="autosave-dot" id="autosave-dot"></span>
+        <span style="font-size:11px;color:#b09090;" id="autosave-label">saved</span>
+      </div>
+    </div>
+ 
+    <!-- Mood picker -->
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a7080;margin-bottom:8px;">How are you feeling?</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;" id="mood-picker">
+        <button class="mood-btn" data-mood="🌸" title="Soft & Open">🌸</button>
+        <button class="mood-btn" data-mood="💜" title="Grateful">💜</button>
+        <button class="mood-btn" data-mood="🔥" title="Motivated">🔥</button>
+        <button class="mood-btn" data-mood="😌" title="Peaceful">😌</button>
+        <button class="mood-btn" data-mood="😔" title="Struggling">😔</button>
+        <button class="mood-btn" data-mood="💪" title="Determined">💪</button>
+        <button class="mood-btn" data-mood="🙏" title="Faithful">🙏</button>
+        <button class="mood-btn" data-mood="😤" title="Frustrated">😤</button>
+      </div>
+    </div>
+ 
+    <!-- Prompt chips -->
+    <div style="margin-bottom:10px;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a7080;margin-bottom:8px;">Need a prompt? Tap one ↓</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;" id="prompt-chips"></div>
+    </div>
+ 
+    <!-- Text area -->
+    <textarea class="journal-tab-area" id="journal-textarea" placeholder="Write freely… what's on your heart today?"></textarea>
+ 
+    <!-- Tags -->
+    <div style="margin-top:10px;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a7080;margin-bottom:8px;">Tag this entry</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;" id="tag-picker"></div>
+    </div>
+  </div>
+ 
+  <!-- Search past entries -->
+  <div style="margin-bottom:10px;">
+    <input class="search-input" id="journal-search" placeholder="🔍 Search past entries…" oninput="renderJournalHistory()"/>
+  </div>
+ 
+  <!-- Past entries -->
+  <div style="font-size:13px;font-style:italic;color:#4a2838;margin-bottom:10px;padding-left:4px;">Past Entries</div>
+  <div id="journal-history"></div>
+</div>
+ 
 <!-- ═══ PROGRESS TAB ═══ -->
 <div id="tab-progress" class="page hidden">
   <div class="stat-grid">
@@ -217,7 +296,7 @@
     <div id="history-log"></div>
   </div>
 </div>
-
+ 
 <!-- ═══ END OF DAY MODAL ═══ -->
 <div class="modal-overlay hidden" id="eod-modal">
   <div class="modal" style="position:relative;">
@@ -227,63 +306,63 @@
     <div class="modal-score-big" id="eod-score"></div>
     <div class="modal-rating" id="eod-rating"></div>
     <div class="mini-bar" style="max-width:200px;margin:0 auto 20px;"><div class="mini-bar-fill" id="eod-score-bar"></div></div>
-
+ 
     <div class="modal-section">
       <div class="modal-section-title">Per-Habit Breakdown</div>
       <div id="eod-habit-breakdown"></div>
     </div>
-
+ 
     <div class="modal-section" id="eod-miss-section">
       <div class="modal-section-title">🎯 Don't Miss These Tomorrow</div>
       <div class="miss-list" id="eod-miss-list"></div>
     </div>
-
+ 
     <div class="modal-section">
       <div class="modal-section-title">📝 Daily Journal</div>
       <textarea class="journal-area" id="eod-journal" placeholder="Your win today… a lesson you learned… one thing you'll do better tomorrow…"></textarea>
     </div>
-
+ 
     <button class="save-btn" id="eod-save">Save & Lock In This Day ✨</button>
   </div>
 </div>
-
+ 
 <!-- ═══ MORNING REVIEW MODAL ═══ -->
 <div class="modal-overlay hidden" id="morning-modal">
   <div class="modal" style="position:relative;">
     <button class="close-btn" id="morning-close">×</button>
     <div class="modal-title">🌅 Morning Review</div>
     <div class="modal-sub">Start your day with intention</div>
-
+ 
     <div class="review-score" id="morning-yday-block">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#9a7080;margin-bottom:6px;">Yesterday's Score</div>
       <div class="review-score-val" id="morning-yday-score">—</div>
       <div class="review-score-lbl" id="morning-yday-rating"></div>
       <div style="font-size:12px;color:#7a5868;font-style:italic;margin-top:8px;" id="morning-yday-note"></div>
     </div>
-
+ 
     <div class="stat-grid" style="margin-bottom:16px;">
       <div class="stat-card"><div class="stat-val" id="mrev-streak">0</div><div class="stat-lbl">Streak 🔥</div></div>
       <div class="stat-card"><div class="stat-val" id="mrev-avg7">—</div><div class="stat-lbl">7-Day Avg</div></div>
       <div class="stat-card"><div class="stat-val" id="mrev-avgall">—</div><div class="stat-lbl">All-Time Avg</div></div>
       <div class="stat-card"><div class="stat-val" id="mrev-days">0</div><div class="stat-lbl">Days Logged</div></div>
     </div>
-
+ 
     <div class="chart-wrap" style="margin-bottom:16px;">
       <div class="chart-title">14-Day History</div>
       <div class="bar-chart" id="mrev-chart"></div>
     </div>
-
+ 
     <div class="modal-section">
       <div class="modal-section-title">🎯 Today's 3 Focus Reminders</div>
       <div id="morning-focus"></div>
     </div>
   </div>
 </div>
-
+ 
 <div style="text-align:center;padding:20px;color:#c4a4b4;font-size:12px;font-style:italic;">
   Your softness is your strength 🌸
 </div>
-
+ 
 <script>
 // ═══════════════════════════════════════════
 // DATA
@@ -306,7 +385,7 @@ const DAILY_HABITS = [
   { id:"h8", emoji:"🌙", title:"Evening Connection Ritual", color:"#d4b8d4",
     tasks:["Put away all screens 30 min before bed to give him your full attention","Ask: 'How can I support you better tomorrow?' and truly listen to his answer","Share one thing you're grateful for about him or your relationship today","End the evening without unresolved conflict — offer peace or apology if needed","Go to bed at the same time as him at least 5 nights a week to maintain closeness"] },
 ];
-
+ 
 const MODULES = [
   { id:1, emoji:"🌱", title:"Mindset Foundation", subtitle:"Understanding Your Why", color:"#d4a5a5",
     tasks:["Reflect on what submission means to you personally","Distinguish submission as strength vs. fear or obligation","Journal: 'What does a thriving, respectful dynamic look like for us?'","Identify 3 areas where you want to soften your approach","Write your personal mission statement for this journey"] },
@@ -323,7 +402,7 @@ const MODULES = [
   { id:7, emoji:"🛡️", title:"Boundaries & Sustainability", subtitle:"Healthy Submission Has Limits", color:"#d4a5b4",
     tasks:["Write down your non-negotiable boundaries","Communicate your limits clearly and lovingly","Schedule a monthly dynamic check-in","Find a community or book for ongoing support","Affirm: 'My submission is my choice and my strength'"] },
 ];
-
+ 
 const AFFIRMATIONS = [
   "My submission is my strength.",
   "I trust my husband's leadership.",
@@ -332,7 +411,7 @@ const AFFIRMATIONS = [
   "My softness is not weakness — it is grace.",
   "I am building something beautiful, one day at a time.",
 ];
-
+ 
 const BANNERS = [
   { min:80, bg:"#e8f5e8", color:"#3a6a3a", text:"✨ Beautiful day — you're showing up fully. Keep going, Mama." },
   { min:60, bg:"#f0eef8", color:"#4a3a7a", text:"💜 Strong momentum today. Push through — you're almost there." },
@@ -340,7 +419,7 @@ const BANNERS = [
   { min:20, bg:"#fff0f0", color:"#8a3a3a", text:"💪 Your husband is worth your effort. Rise up and give him your best today." },
   { min:0,  bg:"#fdf0f5", color:"#9a3860", text:"🌸 Today is wide open. Begin with intention — one check at a time." },
 ];
-
+ 
 function getRating(pct) {
   if(pct>=95) return "Perfect Day 🌟";
   if(pct>=80) return "Strong Day 💜";
@@ -349,18 +428,18 @@ function getRating(pct) {
   if(pct>=20) return "Starting Day 🕯️";
   return "New Beginning 🌅";
 }
-
+ 
 function getBarColor(pct) {
   if(pct>=80) return "#c9829a";
   if(pct>=60) return "#a5b4d4";
   if(pct>=40) return "#c4d4a5";
   return "#e8d0c4";
 }
-
+ 
 function todayKey() {
   return new Date().toISOString().slice(0,10);
 }
-
+ 
 // ═══════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════
@@ -369,7 +448,7 @@ let history = []; // [{date, pct, rating, note, habitPcts:[]}]
 let affirmIdx = 0;
 let expandedHabits = {};
 let expandedModules = {1:true};
-
+ 
 function loadState() {
   try {
     const s = localStorage.getItem('sub_checked_'+todayKey());
@@ -378,15 +457,15 @@ function loadState() {
     if(h) history = JSON.parse(h);
   } catch(e){}
 }
-
+ 
 function saveChecked() {
   try{ localStorage.setItem('sub_checked_'+todayKey(), JSON.stringify(checked)); } catch(e){}
 }
-
+ 
 function saveHistory() {
   try{ localStorage.setItem('sub_history', JSON.stringify(history)); } catch(e){}
 }
-
+ 
 // ═══════════════════════════════════════════
 // COMPUTED
 // ═══════════════════════════════════════════
@@ -396,13 +475,13 @@ function habitDone(hab) {
 function habitPct(hab) {
   return Math.round((habitDone(hab)/hab.tasks.length)*100);
 }
-
+ 
 function totalHabitTasks() { return DAILY_HABITS.reduce((a,h)=>a+h.tasks.length,0); }
 function totalHabitDone()  { return DAILY_HABITS.reduce((a,h)=>a+habitDone(h),0); }
 function totalHabitPct()   { return Math.round((totalHabitDone()/totalHabitTasks())*100); }
-
+ 
 function moduleDone(mod) { return mod.tasks.filter((_,i)=>checked[`mod-${mod.id}-${i}`]).length; }
-
+ 
 function calcStreak() {
   if(!history.length) return 0;
   const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date));
@@ -416,13 +495,13 @@ function calcStreak() {
   }
   return streak;
 }
-
+ 
 function calcAvg(n) {
   const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,n);
   if(!sorted.length) return null;
   return Math.round(sorted.reduce((a,e)=>a+e.pct,0)/sorted.length);
 }
-
+ 
 function calc14Days() {
   const days=[];
   for(let i=13;i>=0;i--){
@@ -433,7 +512,7 @@ function calc14Days() {
   }
   return days;
 }
-
+ 
 // ═══════════════════════════════════════════
 // RENDER
 // ═══════════════════════════════════════════
@@ -447,14 +526,14 @@ function renderHeader() {
   document.getElementById('stat-streak').textContent = calcStreak();
   const avg7 = calcAvg(7);
   document.getElementById('stat-avg').textContent = avg7 !== null ? avg7+'%' : '—';
-
+ 
   const banner = BANNERS.find(b=>pct>=b.min);
   const el = document.getElementById('motivation-banner');
   el.textContent = banner.text;
   el.style.background = banner.bg;
   el.style.color = banner.color;
 }
-
+ 
 function renderHabits() {
   // pip grid
   const grid = document.getElementById('habit-pip-grid');
@@ -463,7 +542,7 @@ function renderHabits() {
     return `<div class="habit-pip" title="${h.title}" style="background:${pct===100?h.color:h.color+'50'};border-color:${pct===100?h.color:'transparent'}">${pct===100?'✅':h.emoji}</div>`;
   }).join('');
   document.getElementById('habits-summary-text').textContent = `${totalHabitDone()} of ${totalHabitTasks()} tasks completed`;
-
+ 
   const container = document.getElementById('habits-container');
   container.innerHTML = DAILY_HABITS.map(h=>{
     const done=habitDone(h), total=h.tasks.length, pct=Math.round(done/total*100);
@@ -490,7 +569,7 @@ function renderHabits() {
     </div>`;
   }).join('');
 }
-
+ 
 function renderCourse() {
   const container = document.getElementById('course-container');
   container.innerHTML = MODULES.map(mod=>{
@@ -519,7 +598,7 @@ function renderCourse() {
     </div>`;
   }).join('');
 }
-
+ 
 function renderAffirmations() {
   document.getElementById('affirm-display').textContent = `"${AFFIRMATIONS[affirmIdx]}"`;
   document.getElementById('affirm-list').innerHTML = AFFIRMATIONS.map((a,i)=>`
@@ -527,7 +606,7 @@ function renderAffirmations() {
       ${i===affirmIdx?'✨ ':'   '}${a}
     </button>`).join('');
 }
-
+ 
 function renderProgressTab() {
   const streak=calcStreak(), avg7=calcAvg(7), avgAll=calcAvg(999);
   const best=history.length?Math.max(...history.map(e=>e.pct)):null;
@@ -538,7 +617,7 @@ function renderProgressTab() {
   renderChart('prog-chart');
   renderHistoryLog();
 }
-
+ 
 function renderChart(elId) {
   const days=calc14Days();
   const el=document.getElementById(elId);
@@ -552,7 +631,7 @@ function renderChart(elId) {
     </div>`;
   }).join('');
 }
-
+ 
 function renderHistoryLog() {
   const el=document.getElementById('history-log');
   if(!el) return;
@@ -569,7 +648,7 @@ function renderHistoryLog() {
       ${e.note?`<div class="history-note">"${e.note}"</div>`:''}
     </div>`).join('');
 }
-
+ 
 function renderAll() {
   renderHeader();
   renderHabits();
@@ -577,7 +656,7 @@ function renderAll() {
   renderAffirmations();
   renderProgressTab();
 }
-
+ 
 // ═══════════════════════════════════════════
 // ACTIONS
 // ═══════════════════════════════════════════
@@ -586,32 +665,33 @@ function toggleTask(key) {
   saveChecked();
   renderAll();
 }
-
+ 
 function toggleHabit(id) {
   expandedHabits[id]=!expandedHabits[id];
   renderHabits();
 }
-
+ 
 function toggleModule(id) {
   expandedModules[id]=!expandedModules[id];
   renderCourse();
 }
-
+ 
 function setAffirm(i) { affirmIdx=i; renderAffirmations(); }
-
+ 
 // Tabs
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const tab=btn.dataset.tab;
-    ['habits','course','affirmations','progress'].forEach(t=>{
+    ['habits','course','affirmations','journal','progress'].forEach(t=>{
       document.getElementById('tab-'+t).classList.toggle('hidden',t!==tab);
     });
     if(tab==='progress') renderProgressTab();
+    if(tab==='journal') renderJournalTab();
   });
 });
-
+ 
 // ═══════════════════════════════════════════
 // END OF DAY MODAL
 // ═══════════════════════════════════════════
@@ -621,7 +701,7 @@ function openEOD() {
   document.getElementById('eod-score').textContent=pct+'%';
   document.getElementById('eod-rating').textContent=getRating(pct);
   document.getElementById('eod-score-bar').style.width=pct+'%';
-
+ 
   // habit breakdown
   document.getElementById('eod-habit-breakdown').innerHTML=DAILY_HABITS.map(h=>{
     const p=habitPct(h);
@@ -631,7 +711,7 @@ function openEOD() {
       <div class="modal-habit-pct">${p}%</div>
     </div>`;
   }).join('');
-
+ 
   // missed tasks
   const missed=[];
   DAILY_HABITS.forEach(h=>{
@@ -643,14 +723,14 @@ function openEOD() {
   } else {
     document.getElementById('eod-miss-section').classList.add('hidden');
   }
-
+ 
   // restore saved note
   const saved=history.find(e=>e.date===todayKey());
   document.getElementById('eod-journal').value=saved?saved.note||'':'';
-
+ 
   document.getElementById('eod-modal').classList.remove('hidden');
 }
-
+ 
 document.getElementById('btn-eod').addEventListener('click',openEOD);
 document.getElementById('eod-close').addEventListener('click',()=>document.getElementById('eod-modal').classList.add('hidden'));
 document.getElementById('eod-save').addEventListener('click',()=>{
@@ -663,7 +743,7 @@ document.getElementById('eod-save').addEventListener('click',()=>{
   document.getElementById('eod-modal').classList.add('hidden');
   renderAll();
 });
-
+ 
 // ═══════════════════════════════════════════
 // MORNING REVIEW MODAL
 // ═══════════════════════════════════════════
@@ -671,7 +751,7 @@ function openMorning() {
   const yesterday=new Date(); yesterday.setDate(yesterday.getDate()-1);
   const ydayKey=yesterday.toISOString().slice(0,10);
   const ydayEntry=history.find(e=>e.date===ydayKey);
-
+ 
   if(ydayEntry){
     document.getElementById('morning-yday-score').textContent=ydayEntry.pct+'%';
     document.getElementById('morning-yday-rating').textContent=ydayEntry.rating;
@@ -681,15 +761,15 @@ function openMorning() {
     document.getElementById('morning-yday-rating').textContent='No entry saved';
     document.getElementById('morning-yday-note').textContent='';
   }
-
+ 
   const streak=calcStreak(), avg7=calcAvg(7), avgAll=calcAvg(999);
   document.getElementById('mrev-streak').textContent=streak;
   document.getElementById('mrev-avg7').textContent=avg7!==null?avg7+'%':'—';
   document.getElementById('mrev-avgall').textContent=avgAll!==null?avgAll+'%':'—';
   document.getElementById('mrev-days').textContent=history.length;
-
+ 
   renderChart('mrev-chart');
-
+ 
   // 3 focus reminders — pick lowest-scoring habits from yesterday
   const focuses=ydayEntry && ydayEntry.habitPcts
     ? DAILY_HABITS.map((h,i)=>({h,p:ydayEntry.habitPcts[i]||0})).sort((a,b)=>a.p-b.p).slice(0,3)
@@ -699,28 +779,189 @@ function openMorning() {
       <div class="focus-num">Focus ${i+1}</div>
       <div class="focus-text">${f.h.emoji} ${f.h.title} — ${f.p<100?'Push for full completion today':'Maintain your momentum!'}</div>
     </div>`).join('');
-
+ 
   document.getElementById('morning-modal').classList.remove('hidden');
 }
-
+ 
 document.getElementById('btn-morning').addEventListener('click',openMorning);
 document.getElementById('morning-close').addEventListener('click',()=>document.getElementById('morning-modal').classList.add('hidden'));
-
+ 
 // close modals on overlay click
 ['eod-modal','morning-modal'].forEach(id=>{
   document.getElementById(id).addEventListener('click',function(e){
     if(e.target===this) this.classList.add('hidden');
   });
 });
-
+ 
 // affirmation auto-rotate
 setInterval(()=>{ affirmIdx=(affirmIdx+1)%AFFIRMATIONS.length; renderAffirmations(); },5000);
-
+ 
+// ═══════════════════════════════════════════
+// JOURNAL
+// ═══════════════════════════════════════════
+const JOURNAL_PROMPTS = [
+  "What's one way I honored my husband today?",
+  "Where did I struggle to be soft today?",
+  "What am I most grateful for right now?",
+  "What does my husband need from me this week?",
+  "How did I respond when things didn't go my way?",
+  "What is God teaching me in this season?",
+  "Where did I feel most at peace today?",
+  "What would I do differently if I could replay today?",
+  "How am I growing in trust and surrender?",
+  "What's one thing I love about my marriage?",
+];
+ 
+const JOURNAL_TAGS = ["gratitude","growth","struggle","victory","prayer","marriage","emotions","boundaries","love","faith"];
+ 
+let journalEntries = []; // [{date, mood, body, tags, ts}]
+let journalDraft = { mood:'', body:'', tags:[] };
+let journalSaveTimer = null;
+ 
+function loadJournal() {
+  try {
+    const j = localStorage.getItem('sub_journal');
+    if(j) journalEntries = JSON.parse(j);
+    // load today's draft if exists
+    const today = journalEntries.find(e=>e.date===todayKey());
+    if(today){ journalDraft={mood:today.mood||'',body:today.body||'',tags:today.tags||[]}; }
+  } catch(e){}
+}
+ 
+function saveJournalEntry() {
+  const dot = document.getElementById('autosave-dot');
+  const lbl = document.getElementById('autosave-label');
+  if(dot){ dot.className='autosave-dot saving'; }
+  if(lbl) lbl.textContent='saving…';
+  clearTimeout(journalSaveTimer);
+  journalSaveTimer = setTimeout(()=>{
+    const entry = {date:todayKey(), mood:journalDraft.mood, body:journalDraft.body, tags:journalDraft.tags, ts:Date.now()};
+    const idx = journalEntries.findIndex(e=>e.date===todayKey());
+    if(idx>=0) journalEntries[idx]=entry; else journalEntries.push(entry);
+    try{ localStorage.setItem('sub_journal', JSON.stringify(journalEntries)); } catch(e){}
+    if(dot){ dot.className='autosave-dot saved'; }
+    if(lbl) lbl.textContent='saved ✓';
+    renderJournalHistory();
+  }, 800);
+}
+ 
+function renderJournalTab() {
+  // date display
+  const dd = document.getElementById('journal-date-display');
+  if(dd) dd.textContent = new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+ 
+  // mood picker
+  document.querySelectorAll('.mood-btn').forEach(btn=>{
+    btn.classList.toggle('selected', btn.dataset.mood===journalDraft.mood);
+    btn.onclick=()=>{
+      journalDraft.mood = journalDraft.mood===btn.dataset.mood ? '' : btn.dataset.mood;
+      document.querySelectorAll('.mood-btn').forEach(b=>b.classList.toggle('selected',b.dataset.mood===journalDraft.mood));
+      saveJournalEntry();
+    };
+  });
+ 
+  // prompt chips (show 4 random)
+  const chips = document.getElementById('prompt-chips');
+  if(chips && !chips.dataset.rendered){
+    chips.dataset.rendered='1';
+    const picks=[...JOURNAL_PROMPTS].sort(()=>Math.random()-.5).slice(0,4);
+    chips.innerHTML=picks.map(p=>`<button class="prompt-chip" onclick="insertPrompt(this)">${p}</button>`).join('');
+  }
+ 
+  // tag picker
+  const tagPicker = document.getElementById('tag-picker');
+  if(tagPicker){
+    tagPicker.innerHTML = JOURNAL_TAGS.map(t=>`
+      <button onclick="toggleTag('${t}')" style="font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid ${journalDraft.tags.includes(t)?'#c9829a':'#e4d4dc'};background:${journalDraft.tags.includes(t)?'#fdf0f5':'#fff'};color:${journalDraft.tags.includes(t)?'#9a3860':'#9a7080'};cursor:pointer;font-family:Georgia,serif;transition:all .2s;">
+        ${t}
+      </button>`).join('');
+  }
+ 
+  // textarea
+  const ta = document.getElementById('journal-textarea');
+  if(ta && ta.value !== journalDraft.body) ta.value = journalDraft.body||'';
+ 
+  renderJournalHistory();
+}
+ 
+function insertPrompt(btn) {
+  const ta = document.getElementById('journal-textarea');
+  if(!ta) return;
+  const prompt = '\n\n'+btn.textContent+'\n';
+  ta.value += prompt;
+  journalDraft.body = ta.value;
+  ta.focus();
+  saveJournalEntry();
+}
+ 
+function toggleTag(tag) {
+  const idx=journalDraft.tags.indexOf(tag);
+  if(idx>=0) journalDraft.tags.splice(idx,1); else journalDraft.tags.push(tag);
+  const tagPicker=document.getElementById('tag-picker');
+  if(tagPicker){
+    tagPicker.innerHTML=JOURNAL_TAGS.map(t=>`
+      <button onclick="toggleTag('${t}')" style="font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid ${journalDraft.tags.includes(t)?'#c9829a':'#e4d4dc'};background:${journalDraft.tags.includes(t)?'#fdf0f5':'#fff'};color:${journalDraft.tags.includes(t)?'#9a3860':'#9a7080'};cursor:pointer;font-family:Georgia,serif;transition:all .2s;">
+        ${t}
+      </button>`).join('');
+  }
+  saveJournalEntry();
+}
+ 
+function deleteJournalEntry(date) {
+  if(!confirm('Delete this entry?')) return;
+  journalEntries=journalEntries.filter(e=>e.date!==date);
+  try{ localStorage.setItem('sub_journal', JSON.stringify(journalEntries)); } catch(e){}
+  if(date===todayKey()){ journalDraft={mood:'',body:'',tags:[]}; const ta=document.getElementById('journal-textarea'); if(ta) ta.value=''; }
+  renderJournalHistory();
+}
+ 
+function renderJournalHistory() {
+  const el=document.getElementById('journal-history');
+  if(!el) return;
+  const q=(document.getElementById('journal-search')||{}).value||'';
+  const sorted=[...journalEntries].sort((a,b)=>b.date.localeCompare(a.date));
+  const filtered=q ? sorted.filter(e=>e.body.toLowerCase().includes(q.toLowerCase())||e.tags.some(t=>t.includes(q.toLowerCase()))) : sorted;
+  const past=filtered.filter(e=>e.date!==todayKey());
+  if(!past.length){
+    el.innerHTML=`<div style="font-size:13px;color:#b09090;font-style:italic;padding:12px 4px;">${q?'No entries match your search.':'No past entries yet — start writing today! 🌸'}</div>`;
+    return;
+  }
+  el.innerHTML=past.map(e=>`
+    <div class="journal-entry-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div class="journal-entry-date">
+          ${e.mood?`<span class="journal-entry-mood">${e.mood}</span>`:''}
+          ${new Date(e.date+'T00:00:00').toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
+        </div>
+        <button class="del-btn" onclick="deleteJournalEntry('${e.date}')" title="Delete entry">🗑</button>
+      </div>
+      <div class="journal-entry-body">${e.body ? (e.body.length>220 ? e.body.slice(0,220)+'…' : e.body) : '<span style="color:#c4a4b4;font-style:italic;">No text written.</span>'}</div>
+      ${e.tags&&e.tags.length?`<div class="journal-entry-tags">${e.tags.map(t=>`<span class="journal-tag">${t}</span>`).join('')}</div>`:''}
+    </div>`).join('');
+}
+ 
+// Wire textarea autosave
+document.addEventListener('DOMContentLoaded',()=>{
+  const ta=document.getElementById('journal-textarea');
+  if(ta){
+    ta.addEventListener('input',()=>{
+      journalDraft.body=ta.value;
+      const dot=document.getElementById('autosave-dot');
+      const lbl=document.getElementById('autosave-label');
+      if(dot) dot.className='autosave-dot saving';
+      if(lbl) lbl.textContent='typing…';
+      saveJournalEntry();
+    });
+  }
+});
+ 
 // ═══════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════
 loadState();
+loadJournal();
 renderAll();
 </script>
 </body>
 </html>
+ 
