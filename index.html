@@ -1,170 +1,226 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Embracing Submission — Daily Journey</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Georgia',serif;background:#fdf6f0;color:#4a2838;min-height:100vh;}
-  button{font-family:inherit;cursor:pointer;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Georgia',serif;background:#fdf6f0;color:#4a2838;min-height:100vh;}
+button{font-family:inherit;cursor:pointer;}
  
-  /* ── HEADER ── */
-  .header{background:linear-gradient(135deg,#e8c9c9 0%,#d4b8d8 50%,#c9d4e8 100%);padding:24px 20px 20px;text-align:center;border-bottom:1px solid rgba(180,140,160,.2);position:relative;}
-  .header-eyebrow{font-size:11px;letter-spacing:.2em;color:#9a7080;text-transform:uppercase;margin-bottom:6px;}
-  .header-title{font-size:26px;color:#5a3848;font-weight:normal;font-style:italic;margin-bottom:2px;}
-  .header-sub{font-size:13px;color:#7a5868;margin-bottom:16px;}
-  .header-actions{position:absolute;top:16px;right:16px;display:flex;gap:8px;}
-  .icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,160,180,.4);background:rgba(255,255,255,.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-  .icon-btn:hover{background:rgba(255,255,255,.8);}
+/* AUTH SCREEN */
+.auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8c9c9 0%,#d4b8d8 50%,#c9d4e8 100%);padding:20px;}
+.auth-card{background:#fdf6f0;border-radius:24px;padding:36px 28px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(160,100,140,.18);}
+.auth-logo{text-align:center;margin-bottom:24px;}
+.auth-logo-icon{font-size:40px;margin-bottom:8px;}
+.auth-logo-title{font-size:22px;color:#5a3848;font-style:italic;font-weight:normal;}
+.auth-logo-sub{font-size:12px;color:#9a7080;letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+.auth-tabs{display:flex;background:#f5eeee;border-radius:12px;padding:3px;margin-bottom:22px;}
+.auth-tab{flex:1;padding:8px;border:none;background:none;border-radius:10px;font-size:13px;color:#9a7080;font-family:'Georgia',serif;transition:all .2s;}
+.auth-tab.active{background:#fff;color:#5a3848;box-shadow:0 1px 4px rgba(160,100,140,.12);}
+.auth-field{margin-bottom:14px;}
+.auth-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a7080;margin-bottom:6px;display:block;}
+.auth-input{width:100%;border:1px solid #e4d4dc;border-radius:12px;padding:11px 14px;font-family:'Georgia',serif;font-size:14px;color:#5a3848;background:#fff;outline:none;transition:border .2s;}
+.auth-input:focus{border-color:#c9829a;}
+.auth-btn{width:100%;padding:13px;background:linear-gradient(135deg,#c9829a,#9a82c9);color:#fff;border:none;border-radius:14px;font-size:15px;font-family:'Georgia',serif;font-style:italic;margin-top:6px;transition:opacity .2s;}
+.auth-btn:hover{opacity:.9;}
+.auth-btn:disabled{opacity:.5;cursor:not-allowed;}
+.auth-error{background:#fff0f0;border:1px solid #f0d0d0;border-radius:10px;padding:10px 14px;font-size:13px;color:#9a3848;margin-bottom:12px;display:none;}
+.auth-success{background:#f0fff0;border:1px solid #c0e0c0;border-radius:10px;padding:10px 14px;font-size:13px;color:#3a6a3a;margin-bottom:12px;display:none;}
  
-  /* ring */
-  .ring-wrap{display:flex;align-items:center;justify-content:center;gap:20px;max-width:360px;margin:0 auto;}
-  .ring-svg{flex-shrink:0;}
-  .ring-center{font-size:20px;font-weight:bold;color:#9a3860;font-family:'Georgia',serif;}
-  .ring-label{font-size:10px;color:#9a7080;letter-spacing:.1em;text-transform:uppercase;}
-  .ring-stats{text-align:left;}
-  .ring-stat{font-size:12px;color:#7a5868;margin-bottom:3px;}
-  .ring-stat span{font-weight:bold;color:#5a3848;}
+/* LOADING */
+.loading-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8c9c9,#d4b8d8,#c9d4e8);flex-direction:column;gap:16px;}
+.loading-spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
  
-  /* banner */
-  .banner{margin:12px 20px 0;border-radius:12px;padding:10px 16px;font-size:13px;font-style:italic;text-align:center;transition:all .5s;}
+/* HEADER */
+.header{background:linear-gradient(135deg,#e8c9c9 0%,#d4b8d8 50%,#c9d4e8 100%);padding:24px 20px 20px;text-align:center;border-bottom:1px solid rgba(180,140,160,.2);position:relative;}
+.header-actions{position:absolute;top:16px;right:16px;display:flex;gap:8px;}
+.header-left{position:absolute;top:16px;left:16px;}
+.icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,160,180,.4);background:rgba(255,255,255,.5);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.icon-btn:hover{background:rgba(255,255,255,.8);}
+.header-eyebrow{font-size:11px;letter-spacing:.2em;color:#9a7080;text-transform:uppercase;margin-bottom:6px;}
+.header-title{font-size:26px;color:#5a3848;font-weight:normal;font-style:italic;margin-bottom:2px;}
+.header-sub{font-size:12px;color:#7a5868;margin-bottom:16px;}
+.ring-wrap{display:flex;align-items:center;justify-content:center;gap:20px;max-width:360px;margin:0 auto;}
+.ring-stats{text-align:left;}
+.ring-stat{font-size:12px;color:#7a5868;margin-bottom:3px;}
+.ring-stat span{font-weight:bold;color:#5a3848;}
+.banner{margin:12px 20px 0;border-radius:12px;padding:10px 16px;font-size:13px;font-style:italic;text-align:center;transition:all .5s;}
  
-  /* ── TABS ── */
-  .tabs{display:flex;border-bottom:1px solid #e8d4d4;background:#fff9f7;overflow-x:auto;}
-  .tab-btn{flex:1;min-width:60px;padding:11px 4px;border:none;background:none;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#b09090;border-bottom:2px solid transparent;font-family:'Georgia',serif;transition:all .2s;white-space:nowrap;}
-  .tab-btn.active{color:#9a3860;border-bottom-color:#9a3860;}
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid #e8d4d4;background:#fff9f7;overflow-x:auto;}
+.tab-btn{flex:1;min-width:56px;padding:11px 2px;border:none;background:none;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#b09090;border-bottom:2px solid transparent;font-family:'Georgia',serif;transition:all .2s;white-space:nowrap;}
+.tab-btn.active{color:#9a3860;border-bottom-color:#9a3860;}
  
-  /* ── CARDS ── */
-  .page{padding:14px;max-width:600px;margin:0 auto;}
-  .card{background:#fff;border-radius:16px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 12px rgba(160,100,120,.07);border:1px solid #f0e4e4;transition:border .3s;}
-  .card.complete{border-color:#c9a5b4;}
-  .card-header{width:100%;padding:14px 16px;display:flex;align-items:center;gap:12px;background:none;border:none;text-align:left;}
-  .card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:background .3s;}
-  .card-title{font-size:14px;font-weight:bold;color:#4a2838;font-style:italic;}
-  .card-sub{font-size:11px;color:#9a8090;margin-bottom:5px;}
-  .card-prog-track{background:#f5eeee;border-radius:10px;height:5px;overflow:hidden;}
-  .card-prog-fill{height:100%;border-radius:10px;transition:width .4s ease;}
-  .card-count{font-size:11px;color:#9a7080;margin-left:auto;flex-shrink:0;}
-  .chevron{color:#9a7080;font-size:11px;transition:transform .2s;margin-left:4px;}
-  .chevron.open{transform:rotate(180deg);}
-  .card-body{padding:0 16px 14px;}
+/* CARDS */
+.page{padding:14px;max-width:600px;margin:0 auto;}
+.card{background:#fff;border-radius:16px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 12px rgba(160,100,120,.07);border:1px solid #f0e4e4;transition:border .3s;}
+.card.complete{border-color:#c9a5b4;}
+.card-header{width:100%;padding:14px 16px;display:flex;align-items:center;gap:12px;background:none;border:none;text-align:left;}
+.card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:background .3s;}
+.card-title{font-size:14px;font-weight:bold;color:#4a2838;font-style:italic;}
+.card-sub{font-size:11px;color:#9a8090;margin-bottom:5px;}
+.card-prog-track{background:#f5eeee;border-radius:10px;height:5px;overflow:hidden;}
+.card-prog-fill{height:100%;border-radius:10px;transition:width .4s ease;}
+.card-count{font-size:11px;color:#9a7080;margin-left:auto;flex-shrink:0;}
+.chevron{color:#9a7080;font-size:11px;transition:transform .2s;margin-left:4px;}
+.chevron.open{transform:rotate(180deg);}
+.card-body{padding:0 16px 14px;}
+.task-row{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid #f5eeee;}
+.task-row:last-child{border-bottom:none;}
+.task-check{width:20px;height:20px;border-radius:6px;flex-shrink:0;margin-top:2px;border:2px solid #d4b0b8;background:transparent;display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer;}
+.task-check.done{border:none;}
+.task-check.done::after{content:'✓';color:#fff;font-size:12px;}
+.task-text{font-size:13px;color:#5a3848;line-height:1.5;cursor:pointer;transition:all .2s;}
+.task-text.done{color:#b09090;text-decoration:line-through;}
+.habit-grid{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.habit-pip{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid transparent;transition:all .3s;}
  
-  /* tasks */
-  .task-row{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid #f5eeee;}
-  .task-row:last-child{border-bottom:none;}
-  .task-check{width:20px;height:20px;border-radius:6px;flex-shrink:0;margin-top:2px;border:2px solid #d4b0b8;background:transparent;display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer;}
-  .task-check.done{border:none;}
-  .task-check.done::after{content:'✓';color:#fff;font-size:12px;}
-  .task-text{font-size:13px;color:#5a3848;line-height:1.5;cursor:pointer;transition:all .2s;}
-  .task-text.done{color:#b09090;text-decoration:line-through;}
+/* PROGRESS */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.stat-card{background:#fff;border-radius:14px;padding:14px;text-align:center;border:1px solid #f0e4e4;}
+.stat-val{font-size:24px;font-weight:bold;color:#9a3860;font-style:italic;}
+.stat-lbl{font-size:11px;color:#9a8090;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;}
+.chart-wrap{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid #f0e4e4;}
+.chart-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
+.bar-chart{display:flex;align-items:flex-end;gap:4px;height:80px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bar{width:100%;border-radius:4px 4px 0 0;transition:height .5s ease;min-height:2px;}
+.bar-lbl{font-size:9px;color:#b09090;text-align:center;}
+.history-list{background:#fff;border-radius:16px;padding:16px;border:1px solid #f0e4e4;}
+.history-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
+.history-item{padding:10px 0;border-bottom:1px solid #f5eeee;}
+.history-item:last-child{border-bottom:none;}
+.history-row{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.history-date{font-size:12px;color:#9a7080;}
+.history-score{font-size:14px;font-weight:bold;color:#9a3860;font-style:italic;}
+.history-rating{font-size:11px;padding:2px 8px;border-radius:20px;background:#f5e8ee;color:#9a5868;}
+.history-note{font-size:12px;color:#7a6070;font-style:italic;padding-left:4px;}
+.mini-bar{height:4px;border-radius:2px;background:#f5eeee;margin-top:4px;overflow:hidden;}
+.mini-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#c9829a,#9a82c9);transition:width .4s;}
  
-  /* habits summary grid */
-  .habit-grid{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
-  .habit-pip{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid transparent;transition:all .3s;}
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(80,30,50,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
+.modal{background:#fdf6f0;border-radius:24px 24px 0 0;padding:24px 20px 32px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;}
+.modal-title{font-size:20px;font-style:italic;color:#4a2838;margin-bottom:4px;}
+.modal-sub{font-size:13px;color:#9a7080;margin-bottom:20px;}
+.modal-score-big{font-size:48px;font-weight:bold;color:#9a3860;font-style:italic;text-align:center;line-height:1;}
+.modal-rating{text-align:center;font-size:16px;color:#5a3848;margin:6px 0 20px;font-style:italic;}
+.modal-section{margin-bottom:18px;}
+.modal-section-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#9a7080;margin-bottom:10px;}
+.modal-habit-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.modal-habit-name{font-size:13px;color:#5a3848;width:160px;flex-shrink:0;}
+.modal-habit-track{flex:1;background:#f5eeee;border-radius:4px;height:6px;overflow:hidden;}
+.modal-habit-fill{height:100%;border-radius:4px;transition:width .5s;}
+.modal-habit-pct{font-size:12px;color:#9a7080;width:30px;text-align:right;}
+.miss-list{background:#fff5f0;border-radius:12px;padding:12px;}
+.miss-item{font-size:13px;color:#9a4858;padding:4px 0;border-bottom:1px solid #f5e8e8;}
+.miss-item:last-child{border-bottom:none;}
+.journal-area{width:100%;border:1px solid #e4d4dc;border-radius:12px;padding:12px;font-family:'Georgia',serif;font-size:13px;color:#5a3848;background:#fff;resize:vertical;min-height:80px;outline:none;}
+.save-btn{width:100%;padding:14px;background:linear-gradient(135deg,#c9829a,#9a82c9);color:#fff;border:none;border-radius:14px;font-size:15px;font-family:'Georgia',serif;font-style:italic;margin-top:12px;transition:opacity .2s;}
+.save-btn:hover{opacity:.9;}
+.close-btn{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;color:#9a7080;cursor:pointer;}
+.review-score{background:linear-gradient(135deg,#f5e8f0,#e8f0f5);border-radius:16px;padding:20px;text-align:center;margin-bottom:16px;}
+.review-score-val{font-size:40px;font-weight:bold;color:#9a3860;font-style:italic;}
+.review-score-lbl{font-size:13px;color:#7a5868;}
+.focus-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;border-left:3px solid #c9829a;}
+.focus-num{font-size:11px;color:#c9829a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+.focus-text{font-size:14px;color:#4a2838;font-style:italic;}
  
-  /* ── PROGRESS TAB ── */
-  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
-  .stat-card{background:#fff;border-radius:14px;padding:14px;text-align:center;border:1px solid #f0e4e4;}
-  .stat-val{font-size:24px;font-weight:bold;color:#9a3860;font-style:italic;}
-  .stat-lbl{font-size:11px;color:#9a8090;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;}
+.hidden{display:none!important;}
  
-  .chart-wrap{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid #f0e4e4;}
-  .chart-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
-  .bar-chart{display:flex;align-items:flex-end;gap:4px;height:80px;}
-  .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
-  .bar{width:100%;border-radius:4px 4px 0 0;transition:height .5s ease;min-height:2px;}
-  .bar-lbl{font-size:9px;color:#b09090;text-align:center;}
- 
-  .history-list{background:#fff;border-radius:16px;padding:16px;border:1px solid #f0e4e4;}
-  .history-title{font-size:13px;font-style:italic;color:#4a2838;margin-bottom:12px;}
-  .history-item{padding:10px 0;border-bottom:1px solid #f5eeee;}
-  .history-item:last-child{border-bottom:none;}
-  .history-row{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
-  .history-date{font-size:12px;color:#9a7080;}
-  .history-score{font-size:14px;font-weight:bold;color:#9a3860;font-style:italic;}
-  .history-rating{font-size:11px;padding:2px 8px;border-radius:20px;background:#f5e8ee;color:#9a5868;}
-  .history-note{font-size:12px;color:#7a6070;font-style:italic;padding-left:4px;}
-  .mini-bar{height:4px;border-radius:2px;background:#f5eeee;margin-top:4px;overflow:hidden;}
-  .mini-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#c9829a,#9a82c9);transition:width .4s;}
- 
-  /* ── MODAL ── */
-  .modal-overlay{position:fixed;inset:0;background:rgba(80,30,50,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
-  .modal{background:#fdf6f0;border-radius:24px 24px 0 0;padding:24px 20px 32px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;}
-  .modal-title{font-size:20px;font-style:italic;color:#4a2838;margin-bottom:4px;}
-  .modal-sub{font-size:13px;color:#9a7080;margin-bottom:20px;}
-  .modal-score-big{font-size:48px;font-weight:bold;color:#9a3860;font-style:italic;text-align:center;line-height:1;}
-  .modal-rating{text-align:center;font-size:16px;color:#5a3848;margin:6px 0 20px;font-style:italic;}
-  .modal-section{margin-bottom:18px;}
-  .modal-section-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#9a7080;margin-bottom:10px;}
-  .modal-habit-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-  .modal-habit-name{font-size:13px;color:#5a3848;width:160px;flex-shrink:0;}
-  .modal-habit-track{flex:1;background:#f5eeee;border-radius:4px;height:6px;overflow:hidden;}
-  .modal-habit-fill{height:100%;border-radius:4px;transition:width .5s;}
-  .modal-habit-pct{font-size:12px;color:#9a7080;width:30px;text-align:right;}
-  .miss-list{background:#fff5f0;border-radius:12px;padding:12px;}
-  .miss-item{font-size:13px;color:#9a4858;padding:4px 0;border-bottom:1px solid #f5e8e8;}
-  .miss-item:last-child{border-bottom:none;}
-  .journal-area{width:100%;border:1px solid #e4d4dc;border-radius:12px;padding:12px;font-family:'Georgia',serif;font-size:13px;color:#5a3848;background:#fff;resize:vertical;min-height:80px;outline:none;}
-  .save-btn{width:100%;padding:14px;background:linear-gradient(135deg,#c9829a,#9a82c9);color:#fff;border:none;border-radius:14px;font-size:15px;font-family:'Georgia',serif;font-style:italic;margin-top:12px;transition:opacity .2s;}
-  .save-btn:hover{opacity:.9;}
-  .close-btn{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;color:#9a7080;cursor:pointer;}
- 
-  /* ── MORNING REVIEW ── */
-  .review-score{background:linear-gradient(135deg,#f5e8f0,#e8f0f5);border-radius:16px;padding:20px;text-align:center;margin-bottom:16px;}
-  .review-score-val{font-size:40px;font-weight:bold;color:#9a3860;font-style:italic;}
-  .review-score-lbl{font-size:13px;color:#7a5868;}
-  .focus-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;border-left:3px solid #c9829a;}
-  .focus-num{font-size:11px;color:#c9829a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
-  .focus-text{font-size:14px;color:#4a2838;font-style:italic;}
- 
-  .hidden{display:none!important;}
- 
-  /* ── JOURNAL TAB ── */
-  .journal-tab-area{width:100%;border:1px solid #e4d4dc;border-radius:14px;padding:14px;font-family:'Georgia',serif;font-size:14px;color:#5a3848;background:#fff;resize:vertical;min-height:180px;outline:none;line-height:1.7;transition:border .2s;}
-  .journal-tab-area:focus{border-color:#c9829a;}
-  .journal-entry-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:10px;border:1px solid #f0e4e4;box-shadow:0 2px 8px rgba(160,100,120,.06);}
-  .journal-entry-date{font-size:11px;color:#9a7080;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
-  .journal-entry-mood{font-size:18px;margin-right:6px;}
-  .journal-entry-body{font-size:13px;color:#5a3848;line-height:1.6;font-style:italic;white-space:pre-wrap;}
-  .journal-entry-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
-  .journal-tag{font-size:11px;padding:2px 9px;border-radius:20px;background:#f5e8ee;color:#9a5868;}
-  .mood-btn{width:38px;height:38px;border-radius:50%;border:2px solid transparent;background:#f5eeee;font-size:18px;transition:all .2s;display:flex;align-items:center;justify-content:center;}
-  .mood-btn.selected{border-color:#c9829a;background:#fdf0f5;}
-  .prompt-chip{background:#f5e8f0;border:1px solid #e4d4dc;border-radius:20px;padding:6px 14px;font-size:12px;color:#7a4868;font-family:'Georgia',serif;font-style:italic;cursor:pointer;transition:all .2s;text-align:left;}
-  .prompt-chip:hover{background:#ecdce8;border-color:#c9a5b4;}
-  .autosave-dot{width:8px;height:8px;border-radius:50%;background:#c4d4a5;display:inline-block;margin-right:6px;transition:background .3s;}
-  .autosave-dot.saving{background:#f0d090;}
-  .autosave-dot.saved{background:#a5c4a5;}
-  .search-input{width:100%;border:1px solid #e4d4dc;border-radius:12px;padding:10px 14px;font-family:'Georgia',serif;font-size:13px;color:#5a3848;background:#fff;outline:none;margin-bottom:12px;}
-  .search-input:focus{border-color:#c9829a;}
-  .del-btn{background:none;border:none;color:#d4a5a5;font-size:14px;cursor:pointer;padding:2px 6px;border-radius:6px;transition:all .2s;}
-  .del-btn:hover{background:#fff0f0;color:#c9829a;}
+/* JOURNAL */
+.journal-tab-area{width:100%;border:1px solid #e4d4dc;border-radius:14px;padding:14px;font-family:'Georgia',serif;font-size:14px;color:#5a3848;background:#fff;resize:vertical;min-height:180px;outline:none;line-height:1.7;transition:border .2s;}
+.journal-tab-area:focus{border-color:#c9829a;}
+.journal-entry-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:10px;border:1px solid #f0e4e4;box-shadow:0 2px 8px rgba(160,100,120,.06);}
+.journal-entry-date{font-size:11px;color:#9a7080;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+.journal-entry-body{font-size:13px;color:#5a3848;line-height:1.6;font-style:italic;white-space:pre-wrap;}
+.journal-entry-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.journal-tag{font-size:11px;padding:2px 9px;border-radius:20px;background:#f5e8ee;color:#9a5868;}
+.mood-btn{width:38px;height:38px;border-radius:50%;border:2px solid transparent;background:#f5eeee;font-size:18px;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.mood-btn.selected{border-color:#c9829a;background:#fdf0f5;}
+.prompt-chip{background:#f5e8f0;border:1px solid #e4d4dc;border-radius:20px;padding:6px 14px;font-size:12px;color:#7a4868;font-family:'Georgia',serif;font-style:italic;cursor:pointer;transition:all .2s;text-align:left;}
+.prompt-chip:hover{background:#ecdce8;border-color:#c9a5b4;}
+.autosave-dot{width:8px;height:8px;border-radius:50%;background:#c4d4a5;display:inline-block;margin-right:6px;transition:background .3s;}
+.autosave-dot.saving{background:#f0d090;}
+.autosave-dot.saved{background:#a5c4a5;}
+.search-input{width:100%;border:1px solid #e4d4dc;border-radius:12px;padding:10px 14px;font-family:'Georgia',serif;font-size:13px;color:#5a3848;background:#fff;outline:none;margin-bottom:12px;}
+.search-input:focus{border-color:#c9829a;}
+.del-btn{background:none;border:none;color:#d4a5a5;font-size:14px;cursor:pointer;padding:2px 6px;border-radius:6px;transition:all .2s;}
+.del-btn:hover{background:#fff0f0;color:#c9829a;}
+.sync-badge{font-size:10px;padding:2px 8px;border-radius:20px;background:#f0fff0;color:#3a7a3a;border:1px solid #c0e0c0;margin-left:6px;}
+.sync-badge.syncing{background:#fffaf0;color:#7a6000;border-color:#e0d090;}
+.sync-badge.error{background:#fff0f0;color:#7a3030;border-color:#e0c0c0;}
 </style>
 </head>
 <body>
  
+<!-- LOADING SCREEN -->
+<div class="loading-screen" id="loading-screen">
+  <div style="font-size:36px;">🌸</div>
+  <div class="loading-spinner"></div>
+  <div style="color:rgba(255,255,255,.8);font-style:italic;font-size:14px;">Loading your journey…</div>
+</div>
+ 
+<!-- AUTH SCREEN -->
+<div class="auth-screen hidden" id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">🌸</div>
+      <div class="auth-logo-title">Embracing Submission</div>
+      <div class="auth-logo-sub">Your Daily Journey</div>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-signin-btn" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="tab-signup-btn" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+    <div id="auth-error" class="auth-error"></div>
+    <div id="auth-success" class="auth-success"></div>
+    <div class="auth-field">
+      <label class="auth-label">Email</label>
+      <input class="auth-input" type="email" id="auth-email" placeholder="you@email.com"/>
+    </div>
+    <div class="auth-field">
+      <label class="auth-label">Password</label>
+      <input class="auth-input" type="password" id="auth-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')submitAuth()"/>
+    </div>
+    <div class="auth-field hidden" id="signup-name-field">
+      <label class="auth-label">Your Name</label>
+      <input class="auth-input" type="text" id="auth-name" placeholder="First name"/>
+    </div>
+    <button class="auth-btn" id="auth-submit-btn" onclick="submitAuth()">Sign In</button>
+    <div style="text-align:center;margin-top:14px;">
+      <button onclick="forgotPassword()" style="background:none;border:none;color:#9a7080;font-size:12px;font-style:italic;text-decoration:underline;">Forgot password?</button>
+    </div>
+  </div>
+</div>
+ 
+<!-- MAIN APP -->
+<div id="app-screen" class="hidden">
+ 
 <!-- HEADER -->
 <div class="header">
+  <div class="header-left">
+    <button class="icon-btn" id="btn-signout" title="Sign Out" onclick="signOut()">👤</button>
+  </div>
   <div class="header-actions">
     <button class="icon-btn" id="btn-morning" title="Morning Review">🌅</button>
     <button class="icon-btn" id="btn-eod" title="End of Day Summary">🌙</button>
   </div>
   <div class="header-eyebrow">Your Journey</div>
   <div class="header-title">Embracing Submission</div>
-  <div class="header-sub">A course for the wife choosing strength through softness</div>
+  <div class="header-sub" id="header-welcome">A course for the wife choosing strength through softness</div>
   <div class="ring-wrap">
-    <svg class="ring-svg" width="72" height="72" viewBox="0 0 72 72">
+    <svg width="72" height="72" viewBox="0 0 72 72">
       <circle cx="36" cy="36" r="30" fill="none" stroke="#f0dde6" stroke-width="7"/>
       <circle id="ring-arc" cx="36" cy="36" r="30" fill="none" stroke="url(#rg)" stroke-width="7"
         stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5"
         transform="rotate(-90 36 36)" style="transition:stroke-dashoffset .6s ease;"/>
-      <defs>
-        <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#c9829a"/>
-          <stop offset="100%" stop-color="#9a82c9"/>
-        </linearGradient>
-      </defs>
+      <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#c9829a"/><stop offset="100%" stop-color="#9a82c9"/>
+      </linearGradient></defs>
       <text x="36" y="40" text-anchor="middle" font-size="14" font-family="Georgia,serif" font-weight="bold" fill="#9a3860" id="ring-pct-text">0%</text>
     </svg>
     <div class="ring-stats">
@@ -185,7 +241,7 @@
   <button class="tab-btn" data-tab="progress">📈 Progress</button>
 </div>
  
-<!-- ═══ HABITS TAB ═══ -->
+<!-- HABITS TAB -->
 <div id="tab-habits" class="page">
   <div class="card" style="border:none;background:linear-gradient(135deg,#f5e8f0,#e8f0f5);">
     <div style="padding:16px;">
@@ -194,6 +250,7 @@
           <div style="font-size:15px;font-style:italic;color:#4a2838;font-weight:bold;">Today's Habits</div>
           <div style="font-size:12px;color:#9a7080;" id="habits-summary-text">0 of 40 tasks completed</div>
         </div>
+        <span class="sync-badge" id="sync-badge">✓ synced</span>
       </div>
       <div class="habit-grid" id="habit-pip-grid"></div>
     </div>
@@ -201,12 +258,12 @@
   <div id="habits-container"></div>
 </div>
  
-<!-- ═══ COURSE TAB ═══ -->
+<!-- COURSE TAB -->
 <div id="tab-course" class="page hidden">
   <div id="course-container"></div>
 </div>
  
-<!-- ═══ AFFIRMATIONS TAB ═══ -->
+<!-- AFFIRMATIONS TAB -->
 <div id="tab-affirmations" class="page hidden" style="max-width:500px;">
   <div style="background:linear-gradient(135deg,#f5e6f0,#e6eef5);border-radius:24px;padding:40px 24px;text-align:center;margin-bottom:16px;min-height:160px;display:flex;flex-direction:column;justify-content:center;">
     <div style="font-size:28px;margin-bottom:12px;">🌸</div>
@@ -216,10 +273,8 @@
   <div id="affirm-list" style="display:flex;flex-direction:column;gap:8px;"></div>
 </div>
  
-<!-- ═══ JOURNAL TAB ═══ -->
+<!-- JOURNAL TAB -->
 <div id="tab-journal" class="page hidden">
- 
-  <!-- New Entry Card -->
   <div style="background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid #f0e4e4;box-shadow:0 2px 12px rgba(160,100,120,.07);">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
       <div>
@@ -231,49 +286,35 @@
         <span style="font-size:11px;color:#b09090;" id="autosave-label">saved</span>
       </div>
     </div>
- 
-    <!-- Mood picker -->
     <div style="margin-bottom:12px;">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a7080;margin-bottom:8px;">How are you feeling?</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;" id="mood-picker">
-        <button class="mood-btn" data-mood="🌸" title="Soft & Open">🌸</button>
-        <button class="mood-btn" data-mood="💜" title="Grateful">💜</button>
-        <button class="mood-btn" data-mood="🔥" title="Motivated">🔥</button>
-        <button class="mood-btn" data-mood="😌" title="Peaceful">😌</button>
-        <button class="mood-btn" data-mood="😔" title="Struggling">😔</button>
-        <button class="mood-btn" data-mood="💪" title="Determined">💪</button>
-        <button class="mood-btn" data-mood="🙏" title="Faithful">🙏</button>
-        <button class="mood-btn" data-mood="😤" title="Frustrated">😤</button>
+        <button class="mood-btn" data-mood="🌸">🌸</button>
+        <button class="mood-btn" data-mood="💜">💜</button>
+        <button class="mood-btn" data-mood="🔥">🔥</button>
+        <button class="mood-btn" data-mood="😌">😌</button>
+        <button class="mood-btn" data-mood="😔">😔</button>
+        <button class="mood-btn" data-mood="💪">💪</button>
+        <button class="mood-btn" data-mood="🙏">🙏</button>
+        <button class="mood-btn" data-mood="😤">😤</button>
       </div>
     </div>
- 
-    <!-- Prompt chips -->
     <div style="margin-bottom:10px;">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a7080;margin-bottom:8px;">Need a prompt? Tap one ↓</div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;" id="prompt-chips"></div>
     </div>
- 
-    <!-- Text area -->
     <textarea class="journal-tab-area" id="journal-textarea" placeholder="Write freely… what's on your heart today?"></textarea>
- 
-    <!-- Tags -->
     <div style="margin-top:10px;">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a7080;margin-bottom:8px;">Tag this entry</div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;" id="tag-picker"></div>
     </div>
   </div>
- 
-  <!-- Search past entries -->
-  <div style="margin-bottom:10px;">
-    <input class="search-input" id="journal-search" placeholder="🔍 Search past entries…" oninput="renderJournalHistory()"/>
-  </div>
- 
-  <!-- Past entries -->
+  <input class="search-input" id="journal-search" placeholder="🔍 Search past entries…" oninput="renderJournalHistory()"/>
   <div style="font-size:13px;font-style:italic;color:#4a2838;margin-bottom:10px;padding-left:4px;">Past Entries</div>
   <div id="journal-history"></div>
 </div>
  
-<!-- ═══ PROGRESS TAB ═══ -->
+<!-- PROGRESS TAB -->
 <div id="tab-progress" class="page hidden">
   <div class="stat-grid">
     <div class="stat-card"><div class="stat-val" id="prog-streak">0</div><div class="stat-lbl">Day Streak 🔥</div></div>
@@ -285,10 +326,10 @@
     <div class="chart-title">14-Day Progress Chart</div>
     <div class="bar-chart" id="prog-chart"></div>
     <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;">
-      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#c9829a;display:inline-block;"></span>≥80% Perfect</span>
-      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#a5b4d4;display:inline-block;"></span>≥60% Strong</span>
-      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#c4d4a5;display:inline-block;"></span>≥40% Growing</span>
-      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#e8d0c4;display:inline-block;"></span>&lt;40% Starting</span>
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#c9829a;display:inline-block;"></span>≥80%</span>
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#a5b4d4;display:inline-block;"></span>≥60%</span>
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#c4d4a5;display:inline-block;"></span>≥40%</span>
+      <span style="font-size:11px;color:#9a8090;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#e8d0c4;display:inline-block;"></span>&lt;40%</span>
     </div>
   </div>
   <div class="history-list">
@@ -297,61 +338,53 @@
   </div>
 </div>
  
-<!-- ═══ END OF DAY MODAL ═══ -->
+<!-- EOD MODAL -->
 <div class="modal-overlay hidden" id="eod-modal">
   <div class="modal" style="position:relative;">
-    <button class="close-btn" id="eod-close">×</button>
+    <button class="close-btn" onclick="document.getElementById('eod-modal').classList.add('hidden')">×</button>
     <div class="modal-title">🌙 End of Day Summary</div>
     <div class="modal-sub" id="eod-date-label"></div>
     <div class="modal-score-big" id="eod-score"></div>
     <div class="modal-rating" id="eod-rating"></div>
     <div class="mini-bar" style="max-width:200px;margin:0 auto 20px;"><div class="mini-bar-fill" id="eod-score-bar"></div></div>
- 
     <div class="modal-section">
       <div class="modal-section-title">Per-Habit Breakdown</div>
       <div id="eod-habit-breakdown"></div>
     </div>
- 
     <div class="modal-section" id="eod-miss-section">
       <div class="modal-section-title">🎯 Don't Miss These Tomorrow</div>
       <div class="miss-list" id="eod-miss-list"></div>
     </div>
- 
     <div class="modal-section">
-      <div class="modal-section-title">📝 Daily Journal</div>
-      <textarea class="journal-area" id="eod-journal" placeholder="Your win today… a lesson you learned… one thing you'll do better tomorrow…"></textarea>
+      <div class="modal-section-title">📝 Daily Note</div>
+      <textarea class="journal-area" id="eod-journal" placeholder="Your win today… a lesson… one thing to do better…"></textarea>
     </div>
- 
-    <button class="save-btn" id="eod-save">Save & Lock In This Day ✨</button>
+    <button class="save-btn" onclick="saveEOD()">Save & Lock In This Day ✨</button>
   </div>
 </div>
  
-<!-- ═══ MORNING REVIEW MODAL ═══ -->
+<!-- MORNING MODAL -->
 <div class="modal-overlay hidden" id="morning-modal">
   <div class="modal" style="position:relative;">
-    <button class="close-btn" id="morning-close">×</button>
+    <button class="close-btn" onclick="document.getElementById('morning-modal').classList.add('hidden')">×</button>
     <div class="modal-title">🌅 Morning Review</div>
     <div class="modal-sub">Start your day with intention</div>
- 
-    <div class="review-score" id="morning-yday-block">
+    <div class="review-score">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#9a7080;margin-bottom:6px;">Yesterday's Score</div>
       <div class="review-score-val" id="morning-yday-score">—</div>
       <div class="review-score-lbl" id="morning-yday-rating"></div>
       <div style="font-size:12px;color:#7a5868;font-style:italic;margin-top:8px;" id="morning-yday-note"></div>
     </div>
- 
     <div class="stat-grid" style="margin-bottom:16px;">
       <div class="stat-card"><div class="stat-val" id="mrev-streak">0</div><div class="stat-lbl">Streak 🔥</div></div>
       <div class="stat-card"><div class="stat-val" id="mrev-avg7">—</div><div class="stat-lbl">7-Day Avg</div></div>
       <div class="stat-card"><div class="stat-val" id="mrev-avgall">—</div><div class="stat-lbl">All-Time Avg</div></div>
       <div class="stat-card"><div class="stat-val" id="mrev-days">0</div><div class="stat-lbl">Days Logged</div></div>
     </div>
- 
     <div class="chart-wrap" style="margin-bottom:16px;">
       <div class="chart-title">14-Day History</div>
       <div class="bar-chart" id="mrev-chart"></div>
     </div>
- 
     <div class="modal-section">
       <div class="modal-section-title">🎯 Today's 3 Focus Reminders</div>
       <div id="morning-focus"></div>
@@ -359,284 +392,323 @@
   </div>
 </div>
  
-<div style="text-align:center;padding:20px;color:#c4a4b4;font-size:12px;font-style:italic;">
-  Your softness is your strength 🌸
-</div>
+<div style="text-align:center;padding:20px;color:#c4a4b4;font-size:12px;font-style:italic;">Your softness is your strength 🌸</div>
+</div><!-- end app-screen -->
  
-<script>
-// ═══════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════
+<!-- FIREBASE SDKs -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as fbSignOut, onAuthStateChanged, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, collection, getDocs, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+ 
+// ── FIREBASE CONFIG ──
+const firebaseConfig = {
+  apiKey: "AIzaSyABCWoFQcX0huaMHwkl6OQB9km0mp1RqzM",
+  authDomain: "submission-journey.firebaseapp.com",
+  projectId: "submission-journey",
+  storageBucket: "submission-journey.firebasestorage.app",
+  messagingSenderId: "941406785274",
+  appId: "1:941406785274:web:75ed100b32a1da049c8343"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+ 
+// ── DATA ──
 const DAILY_HABITS = [
-  { id:"h1", emoji:"🌅", title:"Morning Intention Setting", color:"#e8c4b8",
-    tasks:["Wake up 15 min before him — use quiet time for prayer, meditation, or journaling","Write one specific way you will honor him today in your journal","Read one affirmation aloud to yourself before leaving the bedroom","Prepare his morning coffee or breakfast as an act of loving service","Greet him warmly with a smile, touch, or kind word when he wakes"] },
-  { id:"h2", emoji:"🗣️", title:"Speak Life Over Him", color:"#c8d4b8",
-    tasks:["Give him one specific, sincere compliment about his character or actions today","Send him an encouraging text mid-day — something you genuinely appreciate","When talking to others, speak only well of him","Avoid sarcasm, eye-rolling, or dismissive tones in all conversations with him","End the day by verbally thanking him for one thing he did or provided today"] },
-  { id:"h3", emoji:"👂", title:"Practice Active Listening", color:"#b8c4d4",
-    tasks:["When he speaks, put your phone down and make direct eye contact","Let him finish every sentence — count to 3 silently before responding","Repeat back what he said: 'So what I'm hearing is...' before giving your view","Ask one genuine follow-up question about something he shared","Resist the urge to fix, advise, or redirect — simply receive what he says"] },
-  { id:"h4", emoji:"🍽️", title:"Create a Welcoming Home", color:"#d4b8c8",
-    tasks:["Tidy the main living area before he arrives home so he walks into peace","Light a candle, play soft music, or set a pleasant atmosphere for the evening","Have a meal planned or in progress — even simple shows intentional care","Handle one household task he usually does without being asked","Walk toward him and greet him when he comes home — don't stay seated"] },
-  { id:"h5", emoji:"🧘", title:"Regulate Your Emotions", color:"#c4d4c8",
-    tasks:["Before responding to anything that upsets you, take 5 slow deep breaths first","Journal for 5 minutes when you feel reactive, frustrated, or resentful","Identify the emotion beneath your reaction (fear, hurt, insecurity) and name it","Choose one disagreement today to let go of without making it an issue","Release the day's tensions at night through prayer, stretching, or a gratitude list"] },
-  { id:"h6", emoji:"💞", title:"Physical Affection & Presence", color:"#d4c8b8",
-    tasks:["Initiate physical touch — a hug, hand-hold, or kiss — at least 3 times today","Sit near him when you're both home rather than in separate rooms","Make eye contact and smile at him during a meal or conversation","Dress intentionally today in a way that makes you feel beautiful and confident","Before bed, offer a back rub, foot massage, or simple physical connection"] },
-  { id:"h7", emoji:"🙏", title:"Defer & Trust His Leadership", color:"#b8ccd4",
-    tasks:["Identify one decision coming up and ask for his input before acting","When he makes a call you disagree with, voice your view once calmly — then release it","Avoid taking over a task or situation he has already agreed to handle","Thank him for a decision he made well, even a small one","Pray or reflect on one area where you're growing in trust of his judgment"] },
-  { id:"h8", emoji:"🌙", title:"Evening Connection Ritual", color:"#d4b8d4",
-    tasks:["Put away all screens 30 min before bed to give him your full attention","Ask: 'How can I support you better tomorrow?' and truly listen to his answer","Share one thing you're grateful for about him or your relationship today","End the evening without unresolved conflict — offer peace or apology if needed","Go to bed at the same time as him at least 5 nights a week to maintain closeness"] },
+  {id:"h1",emoji:"🌅",title:"Morning Intention Setting",color:"#e8c4b8",tasks:["Wake up 15 min before him — use quiet time for prayer, meditation, or journaling","Write one specific way you will honor him today in your journal","Read one affirmation aloud to yourself before leaving the bedroom","Prepare his morning coffee or breakfast as an act of loving service","Greet him warmly with a smile, touch, or kind word when he wakes"]},
+  {id:"h2",emoji:"🗣️",title:"Speak Life Over Him",color:"#c8d4b8",tasks:["Give him one specific, sincere compliment about his character or actions today","Send him an encouraging text mid-day — something you genuinely appreciate","When talking to others, speak only well of him","Avoid sarcasm, eye-rolling, or dismissive tones in all conversations with him","End the day by verbally thanking him for one thing he did or provided today"]},
+  {id:"h3",emoji:"👂",title:"Practice Active Listening",color:"#b8c4d4",tasks:["When he speaks, put your phone down and make direct eye contact","Let him finish every sentence — count to 3 silently before responding","Repeat back what he said: 'So what I'm hearing is...' before giving your view","Ask one genuine follow-up question about something he shared","Resist the urge to fix, advise, or redirect — simply receive what he says"]},
+  {id:"h4",emoji:"🍽️",title:"Create a Welcoming Home",color:"#d4b8c8",tasks:["Tidy the main living area before he arrives home so he walks into peace","Light a candle, play soft music, or set a pleasant atmosphere for the evening","Have a meal planned or in progress — even simple shows intentional care","Handle one household task he usually does without being asked","Walk toward him and greet him when he comes home — don't stay seated"]},
+  {id:"h5",emoji:"🧘",title:"Regulate Your Emotions",color:"#c4d4c8",tasks:["Before responding to anything that upsets you, take 5 slow deep breaths first","Journal for 5 minutes when you feel reactive, frustrated, or resentful","Identify the emotion beneath your reaction (fear, hurt, insecurity) and name it","Choose one disagreement today to let go of without making it an issue","Release the day's tensions at night through prayer, stretching, or a gratitude list"]},
+  {id:"h6",emoji:"💞",title:"Physical Affection & Presence",color:"#d4c8b8",tasks:["Initiate physical touch — a hug, hand-hold, or kiss — at least 3 times today","Sit near him when you're both home rather than in separate rooms","Make eye contact and smile at him during a meal or conversation","Dress intentionally today in a way that makes you feel beautiful and confident","Before bed, offer a back rub, foot massage, or simple physical connection"]},
+  {id:"h7",emoji:"🙏",title:"Defer & Trust His Leadership",color:"#b8ccd4",tasks:["Identify one decision coming up and ask for his input before acting","When he makes a call you disagree with, voice your view once calmly — then release it","Avoid taking over a task or situation he has already agreed to handle","Thank him for a decision he made well, even a small one","Pray or reflect on one area where you're growing in trust of his judgment"]},
+  {id:"h8",emoji:"🌙",title:"Evening Connection Ritual",color:"#d4b8d4",tasks:["Put away all screens 30 min before bed to give him your full attention","Ask: 'How can I support you better tomorrow?' and truly listen to his answer","Share one thing you're grateful for about him or your relationship today","End the evening without unresolved conflict — offer peace or apology if needed","Go to bed at the same time as him at least 5 nights a week to maintain closeness"]},
 ];
- 
 const MODULES = [
-  { id:1, emoji:"🌱", title:"Mindset Foundation", subtitle:"Understanding Your Why", color:"#d4a5a5",
-    tasks:["Reflect on what submission means to you personally","Distinguish submission as strength vs. fear or obligation","Journal: 'What does a thriving, respectful dynamic look like for us?'","Identify 3 areas where you want to soften your approach","Write your personal mission statement for this journey"] },
-  { id:2, emoji:"💬", title:"Communication First", subtitle:"Building the Framework Together", color:"#a5b4d4",
-    tasks:["Have an open conversation with your husband about roles","Discuss what 'leadership' looks like for him","Discuss what 'support' looks like for you","Establish a mutual agreement on your dynamic","Set a monthly check-in date on your calendar"] },
-  { id:3, emoji:"🌸", title:"Daily Practices", subtitle:"Small Acts That Build the Dynamic", color:"#c4d4a5",
-    tasks:["Let him lead on one decision you'd normally control","Practice asking rather than directing today","Express appreciation verbally — at least once today","Prioritize his needs in your morning routine","Avoid countering him in front of others","Check in on his day before sharing yours"] },
-  { id:4, emoji:"💗", title:"Emotional Submission", subtitle:"Softening Your Responses", color:"#d4c4a5",
-    tasks:["Pause before reacting in a disagreement today","Replace 'you always/never' with 'I feel...' statements","Choose deference over defensiveness in a low-stakes moment","Trust his judgment even when you'd do it differently","Practice active listening without preparing a rebuttal"] },
-  { id:5, emoji:"👑", title:"Respecting His Leadership", subtitle:"Following His Lead", color:"#b4a5d4",
-    tasks:["Support one of his decisions publicly today","Avoid undermining him in front of family or friends","Celebrate a win of his and affirm his role","Ask for his input on something you normally handle alone","Speak positively about him to others today"] },
-  { id:6, emoji:"🏡", title:"Physical & Domestic", subtitle:"Creating a Welcoming Home Dynamic", color:"#a5d4c4",
-    tasks:["Make home a peaceful space — declutter one area","Identify his love language and lead with it today","Be intentional about physical affection","Dress and present yourself in a way that honors him","Prepare or arrange something special for him at home"] },
-  { id:7, emoji:"🛡️", title:"Boundaries & Sustainability", subtitle:"Healthy Submission Has Limits", color:"#d4a5b4",
-    tasks:["Write down your non-negotiable boundaries","Communicate your limits clearly and lovingly","Schedule a monthly dynamic check-in","Find a community or book for ongoing support","Affirm: 'My submission is my choice and my strength'"] },
+  {id:1,emoji:"🌱",title:"Mindset Foundation",subtitle:"Understanding Your Why",color:"#d4a5a5",tasks:["Reflect on what submission means to you personally","Distinguish submission as strength vs. fear or obligation","Journal: 'What does a thriving, respectful dynamic look like for us?'","Identify 3 areas where you want to soften your approach","Write your personal mission statement for this journey"]},
+  {id:2,emoji:"💬",title:"Communication First",subtitle:"Building the Framework Together",color:"#a5b4d4",tasks:["Have an open conversation with your husband about roles","Discuss what 'leadership' looks like for him","Discuss what 'support' looks like for you","Establish a mutual agreement on your dynamic","Set a monthly check-in date on your calendar"]},
+  {id:3,emoji:"🌸",title:"Daily Practices",subtitle:"Small Acts That Build the Dynamic",color:"#c4d4a5",tasks:["Let him lead on one decision you'd normally control","Practice asking rather than directing today","Express appreciation verbally — at least once today","Prioritize his needs in your morning routine","Avoid countering him in front of others","Check in on his day before sharing yours"]},
+  {id:4,emoji:"💗",title:"Emotional Submission",subtitle:"Softening Your Responses",color:"#d4c4a5",tasks:["Pause before reacting in a disagreement today","Replace 'you always/never' with 'I feel...' statements","Choose deference over defensiveness in a low-stakes moment","Trust his judgment even when you'd do it differently","Practice active listening without preparing a rebuttal"]},
+  {id:5,emoji:"👑",title:"Respecting His Leadership",subtitle:"Following His Lead",color:"#b4a5d4",tasks:["Support one of his decisions publicly today","Avoid undermining him in front of family or friends","Celebrate a win of his and affirm his role","Ask for his input on something you normally handle alone","Speak positively about him to others today"]},
+  {id:6,emoji:"🏡",title:"Physical & Domestic",subtitle:"Creating a Welcoming Home Dynamic",color:"#a5d4c4",tasks:["Make home a peaceful space — declutter one area","Identify his love language and lead with it today","Be intentional about physical affection","Dress and present yourself in a way that honors him","Prepare or arrange something special for him at home"]},
+  {id:7,emoji:"🛡️",title:"Boundaries & Sustainability",subtitle:"Healthy Submission Has Limits",color:"#d4a5b4",tasks:["Write down your non-negotiable boundaries","Communicate your limits clearly and lovingly","Schedule a monthly dynamic check-in","Find a community or book for ongoing support","Affirm: 'My submission is my choice and my strength'"]},
 ];
- 
-const AFFIRMATIONS = [
-  "My submission is my strength.",
-  "I trust my husband's leadership.",
-  "I choose peace over being right.",
-  "A soft answer turns away conflict.",
-  "My softness is not weakness — it is grace.",
-  "I am building something beautiful, one day at a time.",
+const AFFIRMATIONS=["My submission is my strength.","I trust my husband's leadership.","I choose peace over being right.","A soft answer turns away conflict.","My softness is not weakness — it is grace.","I am building something beautiful, one day at a time."];
+const BANNERS=[
+  {min:80,bg:"#e8f5e8",color:"#3a6a3a",text:"✨ Beautiful day — you're showing up fully. Keep going, Mama."},
+  {min:60,bg:"#f0eef8",color:"#4a3a7a",text:"💜 Strong momentum today. Push through — you're almost there."},
+  {min:40,bg:"#fef5e0",color:"#7a5a00",text:"🔥 You've started — now let's build. Every check matters."},
+  {min:20,bg:"#fff0f0",color:"#8a3a3a",text:"💪 Your husband is worth your effort. Rise up and give him your best today."},
+  {min:0, bg:"#fdf0f5",color:"#9a3860",text:"🌸 Today is wide open. Begin with intention — one check at a time."},
 ];
+const JOURNAL_PROMPTS=["What's one way I honored my husband today?","Where did I struggle to be soft today?","What am I most grateful for right now?","What does my husband need from me this week?","How did I respond when things didn't go my way?","What is God teaching me in this season?","Where did I feel most at peace today?","What would I do differently if I could replay today?","How am I growing in trust and surrender?","What's one thing I love about my marriage?"];
+const JOURNAL_TAGS=["gratitude","growth","struggle","victory","prayer","marriage","emotions","boundaries","love","faith"];
  
-const BANNERS = [
-  { min:80, bg:"#e8f5e8", color:"#3a6a3a", text:"✨ Beautiful day — you're showing up fully. Keep going, Mama." },
-  { min:60, bg:"#f0eef8", color:"#4a3a7a", text:"💜 Strong momentum today. Push through — you're almost there." },
-  { min:40, bg:"#fef5e0", color:"#7a5a00", text:"🔥 You've started — now let's build. Every check matters." },
-  { min:20, bg:"#fff0f0", color:"#8a3a3a", text:"💪 Your husband is worth your effort. Rise up and give him your best today." },
-  { min:0,  bg:"#fdf0f5", color:"#9a3860", text:"🌸 Today is wide open. Begin with intention — one check at a time." },
-];
- 
-function getRating(pct) {
-  if(pct>=95) return "Perfect Day 🌟";
-  if(pct>=80) return "Strong Day 💜";
-  if(pct>=60) return "Growing Day 🌱";
-  if(pct>=40) return "Steady Day 🌸";
-  if(pct>=20) return "Starting Day 🕯️";
-  return "New Beginning 🌅";
-}
- 
-function getBarColor(pct) {
-  if(pct>=80) return "#c9829a";
-  if(pct>=60) return "#a5b4d4";
-  if(pct>=40) return "#c4d4a5";
-  return "#e8d0c4";
-}
- 
-function todayKey() {
-  return new Date().toISOString().slice(0,10);
-}
- 
-// ═══════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════
+// ── STATE ──
+let currentUser = null;
 let checked = {};
-let history = []; // [{date, pct, rating, note, habitPcts:[]}]
+let history = [];
+let journalEntries = [];
+let journalDraft = {mood:'',body:'',tags:[]};
 let affirmIdx = 0;
 let expandedHabits = {};
 let expandedModules = {1:true};
+let syncTimer = null;
+let journalSaveTimer = null;
  
-function loadState() {
-  try {
-    const s = localStorage.getItem('sub_checked_'+todayKey());
-    if(s) checked = JSON.parse(s);
-    const h = localStorage.getItem('sub_history');
-    if(h) history = JSON.parse(h);
-  } catch(e){}
-}
- 
-function saveChecked() {
-  try{ localStorage.setItem('sub_checked_'+todayKey(), JSON.stringify(checked)); } catch(e){}
-}
- 
-function saveHistory() {
-  try{ localStorage.setItem('sub_history', JSON.stringify(history)); } catch(e){}
-}
- 
-// ═══════════════════════════════════════════
-// COMPUTED
-// ═══════════════════════════════════════════
-function habitDone(hab) {
-  return hab.tasks.filter((_,i)=>checked[`hab-${hab.id}-${i}`]).length;
-}
-function habitPct(hab) {
-  return Math.round((habitDone(hab)/hab.tasks.length)*100);
-}
- 
-function totalHabitTasks() { return DAILY_HABITS.reduce((a,h)=>a+h.tasks.length,0); }
-function totalHabitDone()  { return DAILY_HABITS.reduce((a,h)=>a+habitDone(h),0); }
-function totalHabitPct()   { return Math.round((totalHabitDone()/totalHabitTasks())*100); }
- 
-function moduleDone(mod) { return mod.tasks.filter((_,i)=>checked[`mod-${mod.id}-${i}`]).length; }
- 
-function calcStreak() {
-  if(!history.length) return 0;
-  const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date));
-  let streak=0, d=new Date(); d.setHours(0,0,0,0);
-  for(const entry of sorted){
-    const ed=new Date(entry.date+'T00:00:00');
-    const diff=Math.round((d-ed)/(1000*60*60*24));
-    if(diff>1) break;
-    streak++;
-    d=ed;
-  }
+function todayKey(){ return new Date().toISOString().slice(0,10); }
+function getRating(p){ if(p>=95)return"Perfect Day 🌟";if(p>=80)return"Strong Day 💜";if(p>=60)return"Growing Day 🌱";if(p>=40)return"Steady Day 🌸";if(p>=20)return"Starting Day 🕯️";return"New Beginning 🌅"; }
+function getBarColor(p){ if(p>=80)return"#c9829a";if(p>=60)return"#a5b4d4";if(p>=40)return"#c4d4a5";return"#e8d0c4"; }
+function habitDone(h){ return h.tasks.filter((_,i)=>checked[`hab-${h.id}-${i}`]).length; }
+function habitPct(h){ return Math.round(habitDone(h)/h.tasks.length*100); }
+function totalHabitTasks(){ return DAILY_HABITS.reduce((a,h)=>a+h.tasks.length,0); }
+function totalHabitDone(){ return DAILY_HABITS.reduce((a,h)=>a+habitDone(h),0); }
+function totalHabitPct(){ return Math.round(totalHabitDone()/totalHabitTasks()*100); }
+function moduleDone(m){ return m.tasks.filter((_,i)=>checked[`mod-${m.id}-${i}`]).length; }
+function calcStreak(){
+  if(!history.length)return 0;
+  const s=[...history].sort((a,b)=>b.date.localeCompare(a.date));
+  let streak=0,d=new Date();d.setHours(0,0,0,0);
+  for(const e of s){const ed=new Date(e.date+'T00:00:00');const diff=Math.round((d-ed)/(86400000));if(diff>1)break;streak++;d=ed;}
   return streak;
 }
- 
-function calcAvg(n) {
-  const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,n);
-  if(!sorted.length) return null;
-  return Math.round(sorted.reduce((a,e)=>a+e.pct,0)/sorted.length);
+function calcAvg(n){
+  const s=[...history].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,n);
+  if(!s.length)return null;
+  return Math.round(s.reduce((a,e)=>a+e.pct,0)/s.length);
 }
- 
-function calc14Days() {
+function calc14Days(){
   const days=[];
-  for(let i=13;i>=0;i--){
-    const d=new Date(); d.setDate(d.getDate()-i);
-    const key=d.toISOString().slice(0,10);
-    const entry=history.find(e=>e.date===key);
-    days.push({date:key,label:d.toLocaleDateString('en',{month:'numeric',day:'numeric'}),pct:entry?entry.pct:null});
-  }
+  for(let i=13;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=d.toISOString().slice(0,10);const e=history.find(x=>x.date===k);days.push({date:k,label:d.toLocaleDateString('en',{month:'numeric',day:'numeric'}),pct:e?e.pct:null});}
   return days;
 }
  
-// ═══════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════
-function renderHeader() {
-  const pct = totalHabitPct();
-  const offset = 188.5 - (188.5 * pct / 100);
-  document.getElementById('ring-arc').style.strokeDashoffset = offset;
-  document.getElementById('ring-pct-text').textContent = pct+'%';
-  document.getElementById('stat-today-done').textContent = totalHabitDone();
-  document.getElementById('stat-today-total').textContent = totalHabitTasks();
-  document.getElementById('stat-streak').textContent = calcStreak();
-  const avg7 = calcAvg(7);
-  document.getElementById('stat-avg').textContent = avg7 !== null ? avg7+'%' : '—';
+// ── FIRESTORE HELPERS ──
+function uid(){ return currentUser.uid; }
  
-  const banner = BANNERS.find(b=>pct>=b.min);
-  const el = document.getElementById('motivation-banner');
-  el.textContent = banner.text;
-  el.style.background = banner.bg;
-  el.style.color = banner.color;
+async function fbSaveChecked(){
+  setSyncBadge('syncing');
+  try{
+    await setDoc(doc(db,`users/${uid()}/dailyChecks/${todayKey()}`),{checked,date:todayKey(),updatedAt:Date.now()});
+    setSyncBadge('synced');
+  }catch(e){ setSyncBadge('error'); }
 }
  
-function renderHabits() {
-  // pip grid
-  const grid = document.getElementById('habit-pip-grid');
-  grid.innerHTML = DAILY_HABITS.map(h=>{
-    const pct=habitPct(h);
-    return `<div class="habit-pip" title="${h.title}" style="background:${pct===100?h.color:h.color+'50'};border-color:${pct===100?h.color:'transparent'}">${pct===100?'✅':h.emoji}</div>`;
-  }).join('');
-  document.getElementById('habits-summary-text').textContent = `${totalHabitDone()} of ${totalHabitTasks()} tasks completed`;
+async function fbSaveHistory(entry){
+  setSyncBadge('syncing');
+  try{
+    await setDoc(doc(db,`users/${uid()}/history/${entry.date}`),entry);
+    setSyncBadge('synced');
+  }catch(e){ setSyncBadge('error'); }
+}
  
-  const container = document.getElementById('habits-container');
-  container.innerHTML = DAILY_HABITS.map(h=>{
-    const done=habitDone(h), total=h.tasks.length, pct=Math.round(done/total*100);
-    const open=expandedHabits[h.id];
-    return `<div class="card ${done===total?'complete':''}" id="hcard-${h.id}">
+async function fbSaveJournal(entry){
+  try{
+    await setDoc(doc(db,`users/${uid()}/journal/${entry.date}`),entry);
+    document.getElementById('autosave-dot').className='autosave-dot saved';
+    document.getElementById('autosave-label').textContent='saved ✓';
+  }catch(e){
+    document.getElementById('autosave-dot').className='autosave-dot saving';
+    document.getElementById('autosave-label').textContent='error ✗';
+  }
+}
+ 
+async function fbDeleteJournal(date){
+  try{ await deleteDoc(doc(db,`users/${uid()}/journal/${date}`)); }catch(e){}
+}
+ 
+async function loadUserData(){
+  // Load today's checks
+  try{
+    const snap=await getDoc(doc(db,`users/${uid()}/dailyChecks/${todayKey()}`));
+    if(snap.exists()) checked=snap.data().checked||{};
+  }catch(e){}
+  // Load history
+  try{
+    const snap=await getDocs(collection(db,`users/${uid()}/history`));
+    history=snap.docs.map(d=>d.data());
+  }catch(e){}
+  // Load journal
+  try{
+    const snap=await getDocs(collection(db,`users/${uid()}/journal`));
+    journalEntries=snap.docs.map(d=>d.data());
+    const today=journalEntries.find(e=>e.date===todayKey());
+    if(today) journalDraft={mood:today.mood||'',body:today.body||'',tags:today.tags||[]};
+  }catch(e){}
+}
+ 
+function setSyncBadge(state){
+  const b=document.getElementById('sync-badge');
+  if(!b)return;
+  if(state==='syncing'){b.textContent='⟳ syncing';b.className='sync-badge syncing';}
+  else if(state==='synced'){b.textContent='✓ synced';b.className='sync-badge';}
+  else{b.textContent='✗ error';b.className='sync-badge error';}
+}
+ 
+// ── AUTH ──
+let authMode='signin';
+window.switchAuthTab=(mode)=>{
+  authMode=mode;
+  document.getElementById('tab-signin-btn').classList.toggle('active',mode==='signin');
+  document.getElementById('tab-signup-btn').classList.toggle('active',mode==='signup');
+  document.getElementById('auth-submit-btn').textContent=mode==='signin'?'Sign In':'Create Account';
+  document.getElementById('signup-name-field').classList.toggle('hidden',mode==='signin');
+  document.getElementById('auth-error').style.display='none';
+  document.getElementById('auth-success').style.display='none';
+};
+ 
+window.submitAuth=async()=>{
+  const email=document.getElementById('auth-email').value.trim();
+  const password=document.getElementById('auth-password').value;
+  const name=document.getElementById('auth-name').value.trim();
+  const errEl=document.getElementById('auth-error');
+  const btn=document.getElementById('auth-submit-btn');
+  errEl.style.display='none';
+  btn.disabled=true;
+  btn.textContent='Please wait…';
+  try{
+    if(authMode==='signup'){
+      const cred=await createUserWithEmailAndPassword(auth,email,password);
+      if(name) await updateProfile(cred.user,{displayName:name});
+    }else{
+      await signInWithEmailAndPassword(auth,email,password);
+    }
+  }catch(e){
+    errEl.textContent=e.message.replace('Firebase: ','').replace(/\(.*\)/,'');
+    errEl.style.display='block';
+    btn.disabled=false;
+    btn.textContent=authMode==='signin'?'Sign In':'Create Account';
+  }
+};
+ 
+window.forgotPassword=async()=>{
+  const email=document.getElementById('auth-email').value.trim();
+  if(!email){document.getElementById('auth-error').textContent='Enter your email first.';document.getElementById('auth-error').style.display='block';return;}
+  try{
+    await sendPasswordResetEmail(auth,email);
+    document.getElementById('auth-success').textContent='Password reset email sent! Check your inbox.';
+    document.getElementById('auth-success').style.display='block';
+  }catch(e){
+    document.getElementById('auth-error').textContent=e.message.replace('Firebase: ','').replace(/\(.*\)/,'');
+    document.getElementById('auth-error').style.display='block';
+  }
+};
+ 
+window.signOut=async()=>{
+  if(confirm('Sign out?')){await fbSignOut(auth);}
+};
+ 
+// ── AUTH STATE ──
+onAuthStateChanged(auth, async(user)=>{
+  if(user){
+    currentUser=user;
+    document.getElementById('loading-screen').classList.add('hidden');
+    document.getElementById('auth-screen').classList.add('hidden');
+    document.getElementById('app-screen').classList.remove('hidden');
+    const name=user.displayName||user.email.split('@')[0];
+    document.getElementById('header-welcome').textContent=`Welcome back, ${name} 🌸`;
+    await loadUserData();
+    renderAll();
+  }else{
+    currentUser=null;
+    checked={};history=[];journalEntries=[];
+    document.getElementById('loading-screen').classList.add('hidden');
+    document.getElementById('app-screen').classList.add('hidden');
+    document.getElementById('auth-screen').classList.remove('hidden');
+  }
+});
+ 
+// ── RENDER ──
+function renderHeader(){
+  const pct=totalHabitPct();
+  document.getElementById('ring-arc').style.strokeDashoffset=188.5-(188.5*pct/100);
+  document.getElementById('ring-pct-text').textContent=pct+'%';
+  document.getElementById('stat-today-done').textContent=totalHabitDone();
+  document.getElementById('stat-today-total').textContent=totalHabitTasks();
+  document.getElementById('stat-streak').textContent=calcStreak();
+  const avg7=calcAvg(7);
+  document.getElementById('stat-avg').textContent=avg7!==null?avg7+'%':'—';
+  const banner=BANNERS.find(b=>pct>=b.min);
+  const el=document.getElementById('motivation-banner');
+  el.textContent=banner.text;el.style.background=banner.bg;el.style.color=banner.color;
+}
+ 
+function renderHabits(){
+  document.getElementById('habit-pip-grid').innerHTML=DAILY_HABITS.map(h=>{
+    const p=habitPct(h);
+    return`<div class="habit-pip" title="${h.title}" style="background:${p===100?h.color:h.color+'50'};border-color:${p===100?h.color:'transparent'}">${p===100?'✅':h.emoji}</div>`;
+  }).join('');
+  document.getElementById('habits-summary-text').textContent=`${totalHabitDone()} of ${totalHabitTasks()} tasks completed`;
+  document.getElementById('habits-container').innerHTML=DAILY_HABITS.map(h=>{
+    const done=habitDone(h),total=h.tasks.length,pct=Math.round(done/total*100),open=expandedHabits[h.id];
+    return`<div class="card ${done===total?'complete':''}">
       <button class="card-header" onclick="toggleHabit('${h.id}')">
         <div class="card-icon" style="background:${done===total?h.color:h.color+'50'}">${done===total?'✅':h.emoji}</div>
         <div style="flex:1;min-width:0;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div class="card-title">${h.title}</div>
-            <div class="card-count">${done}/${total}</div>
+            <div class="card-title">${h.title}</div><div class="card-count">${done}/${total}</div>
           </div>
           <div class="card-prog-track"><div class="card-prog-fill" style="width:${pct}%;background:linear-gradient(90deg,${h.color},${h.color}bb)"></div></div>
         </div>
         <span class="chevron ${open?'open':''}">▼</span>
       </button>
-      ${open?`<div class="card-body">${h.tasks.map((t,i)=>{
-        const k=`hab-${h.id}-${i}`, done2=checked[k];
-        return `<div class="task-row">
-          <div class="task-check ${done2?'done':''}" style="${done2?'background:linear-gradient(135deg,'+h.color+','+h.color+'99)':''}" onclick="toggleTask('${k}')"></div>
-          <div class="task-text ${done2?'done':''}" onclick="toggleTask('${k}')">${t}</div>
-        </div>`;
-      }).join('')}</div>`:''}
+      ${open?`<div class="card-body">${h.tasks.map((t,i)=>{const k=`hab-${h.id}-${i}`,d=checked[k];return`<div class="task-row"><div class="task-check ${d?'done':''}" style="${d?'background:linear-gradient(135deg,'+h.color+','+h.color+'99)':''}" onclick="toggleTask('${k}')"></div><div class="task-text ${d?'done':''}" onclick="toggleTask('${k}')">${t}</div></div>`;}).join('')}</div>`:''}
     </div>`;
   }).join('');
 }
  
-function renderCourse() {
-  const container = document.getElementById('course-container');
-  container.innerHTML = MODULES.map(mod=>{
-    const done=moduleDone(mod), total=mod.tasks.length, pct=Math.round(done/total*100);
-    const open=expandedModules[mod.id];
-    return `<div class="card ${done===total?'complete':''}">
+function renderCourse(){
+  document.getElementById('course-container').innerHTML=MODULES.map(mod=>{
+    const done=moduleDone(mod),total=mod.tasks.length,pct=Math.round(done/total*100),open=expandedModules[mod.id];
+    return`<div class="card ${done===total?'complete':''}">
       <button class="card-header" onclick="toggleModule(${mod.id})">
         <div class="card-icon" style="background:${mod.color}40">${done===total?'✅':mod.emoji}</div>
         <div style="flex:1;min-width:0;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div class="card-title">Mod ${mod.id}: ${mod.title}</div>
-            <div class="card-count">${done}/${total}</div>
+            <div class="card-title">Mod ${mod.id}: ${mod.title}</div><div class="card-count">${done}/${total}</div>
           </div>
           <div class="card-sub">${mod.subtitle}</div>
           <div class="card-prog-track"><div class="card-prog-fill" style="width:${pct}%;background:linear-gradient(90deg,${mod.color},${mod.color}cc)"></div></div>
         </div>
         <span class="chevron ${open?'open':''}">▼</span>
       </button>
-      ${open?`<div class="card-body">${mod.tasks.map((t,i)=>{
-        const k=`mod-${mod.id}-${i}`, isDone=checked[k];
-        return `<div class="task-row">
-          <div class="task-check ${isDone?'done':''}" style="${isDone?'background:linear-gradient(135deg,'+mod.color+','+mod.color+'99)':''}" onclick="toggleTask('${k}')"></div>
-          <div class="task-text ${isDone?'done':''}" onclick="toggleTask('${k}')">${t}</div>
-        </div>`;
-      }).join('')}</div>`:''}
+      ${open?`<div class="card-body">${mod.tasks.map((t,i)=>{const k=`mod-${mod.id}-${i}`,d=checked[k];return`<div class="task-row"><div class="task-check ${d?'done':''}" style="${d?'background:linear-gradient(135deg,'+mod.color+','+mod.color+'99)':''}" onclick="toggleTask('${k}')"></div><div class="task-text ${d?'done':''}" onclick="toggleTask('${k}')">${t}</div></div>`;}).join('')}</div>`:''}
     </div>`;
   }).join('');
 }
  
-function renderAffirmations() {
-  document.getElementById('affirm-display').textContent = `"${AFFIRMATIONS[affirmIdx]}"`;
-  document.getElementById('affirm-list').innerHTML = AFFIRMATIONS.map((a,i)=>`
-    <button onclick="setAffirm(${i})" style="padding:12px 16px;background:${i===affirmIdx?'linear-gradient(135deg,#e8c9d4,#d4c9e8)':'#fff'};border:1px solid ${i===affirmIdx?'#c9a5b4':'#f0e4e4'};border-radius:12px;cursor:pointer;font-size:13px;color:${i===affirmIdx?'#5a2848':'#7a5868'};font-style:italic;font-family:Georgia,serif;text-align:left;transition:all .2s;width:100%;">
-      ${i===affirmIdx?'✨ ':'   '}${a}
-    </button>`).join('');
+function renderAffirmations(){
+  document.getElementById('affirm-display').textContent=`"${AFFIRMATIONS[affirmIdx]}"`;
+  document.getElementById('affirm-list').innerHTML=AFFIRMATIONS.map((a,i)=>`
+    <button onclick="setAffirm(${i})" style="padding:12px 16px;background:${i===affirmIdx?'linear-gradient(135deg,#e8c9d4,#d4c9e8)':'#fff'};border:1px solid ${i===affirmIdx?'#c9a5b4':'#f0e4e4'};border-radius:12px;cursor:pointer;font-size:13px;color:${i===affirmIdx?'#5a2848':'#7a5868'};font-style:italic;font-family:Georgia,serif;text-align:left;width:100%;">
+      ${i===affirmIdx?'✨ ':'   '}${a}</button>`).join('');
 }
  
-function renderProgressTab() {
-  const streak=calcStreak(), avg7=calcAvg(7), avgAll=calcAvg(999);
+function renderProgressTab(){
+  const streak=calcStreak(),avg7=calcAvg(7),avgAll=calcAvg(999);
   const best=history.length?Math.max(...history.map(e=>e.pct)):null;
   document.getElementById('prog-streak').textContent=streak;
   document.getElementById('prog-avg7').textContent=avg7!==null?avg7+'%':'—';
   document.getElementById('prog-best').textContent=best!==null?best+'%':'—';
   document.getElementById('prog-total').textContent=history.length;
-  renderChart('prog-chart');
-  renderHistoryLog();
+  renderChart('prog-chart');renderHistoryLog();
 }
  
-function renderChart(elId) {
-  const days=calc14Days();
-  const el=document.getElementById(elId);
-  if(!el) return;
+function renderChart(elId){
+  const days=calc14Days(),el=document.getElementById(elId);
+  if(!el)return;
   el.innerHTML=days.map(d=>{
-    const h=d.pct!==null?Math.max(Math.round(d.pct*0.7),4):4;
+    const h=d.pct!==null?Math.max(Math.round(d.pct*.7),4):4;
     const col=d.pct!==null?getBarColor(d.pct):'#f0e4e4';
-    return `<div class="bar-col">
-      <div class="bar" style="height:${h}px;background:${col};"></div>
-      <div class="bar-lbl">${d.label}</div>
-    </div>`;
+    return`<div class="bar-col"><div class="bar" style="height:${h}px;background:${col};"></div><div class="bar-lbl">${d.label}</div></div>`;
   }).join('');
 }
  
-function renderHistoryLog() {
-  const el=document.getElementById('history-log');
-  if(!el) return;
+function renderHistoryLog(){
+  const el=document.getElementById('history-log');if(!el)return;
   const sorted=[...history].sort((a,b)=>b.date.localeCompare(a.date));
-  if(!sorted.length){ el.innerHTML='<div style="font-size:13px;color:#b09090;font-style:italic;padding:8px 0;">No days logged yet. Complete your first day and save it!</div>'; return; }
+  if(!sorted.length){el.innerHTML='<div style="font-size:13px;color:#b09090;font-style:italic;padding:8px 0;">No days logged yet. Save your first end-of-day to get started!</div>';return;}
   el.innerHTML=sorted.map(e=>`
     <div class="history-item">
       <div class="history-row">
@@ -649,34 +721,155 @@ function renderHistoryLog() {
     </div>`).join('');
 }
  
-function renderAll() {
-  renderHeader();
-  renderHabits();
-  renderCourse();
-  renderAffirmations();
-  renderProgressTab();
+function renderJournalTab(){
+  const dd=document.getElementById('journal-date-display');
+  if(dd) dd.textContent=new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  document.querySelectorAll('.mood-btn').forEach(btn=>{
+    btn.classList.toggle('selected',btn.dataset.mood===journalDraft.mood);
+    btn.onclick=()=>{
+      journalDraft.mood=journalDraft.mood===btn.dataset.mood?'':btn.dataset.mood;
+      document.querySelectorAll('.mood-btn').forEach(b=>b.classList.toggle('selected',b.dataset.mood===journalDraft.mood));
+      triggerJournalSave();
+    };
+  });
+  const chips=document.getElementById('prompt-chips');
+  if(chips&&!chips.dataset.rendered){
+    chips.dataset.rendered='1';
+    const picks=[...JOURNAL_PROMPTS].sort(()=>Math.random()-.5).slice(0,4);
+    chips.innerHTML=picks.map(p=>`<button class="prompt-chip" onclick="insertPrompt(this)">${p}</button>`).join('');
+  }
+  renderTagPicker();
+  const ta=document.getElementById('journal-textarea');
+  if(ta&&ta.value!==journalDraft.body) ta.value=journalDraft.body||'';
+  renderJournalHistory();
 }
  
-// ═══════════════════════════════════════════
-// ACTIONS
-// ═══════════════════════════════════════════
-function toggleTask(key) {
-  checked[key] = !checked[key];
-  saveChecked();
-  renderAll();
+function renderTagPicker(){
+  const tp=document.getElementById('tag-picker');
+  if(!tp)return;
+  tp.innerHTML=JOURNAL_TAGS.map(t=>`
+    <button onclick="toggleTag('${t}')" style="font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid ${journalDraft.tags.includes(t)?'#c9829a':'#e4d4dc'};background:${journalDraft.tags.includes(t)?'#fdf0f5':'#fff'};color:${journalDraft.tags.includes(t)?'#9a3860':'#9a7080'};cursor:pointer;font-family:Georgia,serif;transition:all .2s;">
+      ${t}</button>`).join('');
 }
  
-function toggleHabit(id) {
-  expandedHabits[id]=!expandedHabits[id];
-  renderHabits();
+function renderJournalHistory(){
+  const el=document.getElementById('journal-history');if(!el)return;
+  const q=(document.getElementById('journal-search')||{}).value||'';
+  const sorted=[...journalEntries].sort((a,b)=>b.date.localeCompare(a.date));
+  const filtered=q?sorted.filter(e=>(e.body||'').toLowerCase().includes(q.toLowerCase())||((e.tags||[]).some(t=>t.includes(q.toLowerCase())))):sorted;
+  const past=filtered.filter(e=>e.date!==todayKey());
+  if(!past.length){el.innerHTML=`<div style="font-size:13px;color:#b09090;font-style:italic;padding:12px 4px;">${q?'No entries match your search.':'No past entries yet — start writing today! 🌸'}</div>`;return;}
+  el.innerHTML=past.map(e=>`
+    <div class="journal-entry-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div class="journal-entry-date">${e.mood?`<span style="font-size:18px;margin-right:6px;">${e.mood}</span>`:''}${new Date(e.date+'T00:00:00').toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</div>
+        <button class="del-btn" onclick="deleteJournalEntry('${e.date}')">🗑</button>
+      </div>
+      <div class="journal-entry-body">${e.body?(e.body.length>220?e.body.slice(0,220)+'…':e.body):'<span style="color:#c4a4b4;font-style:italic;">No text written.</span>'}</div>
+      ${e.tags&&e.tags.length?`<div class="journal-entry-tags">${e.tags.map(t=>`<span class="journal-tag">${t}</span>`).join('')}</div>`:''}
+    </div>`).join('');
 }
  
-function toggleModule(id) {
-  expandedModules[id]=!expandedModules[id];
-  renderCourse();
+function renderAll(){
+  renderHeader();renderHabits();renderCourse();renderAffirmations();renderProgressTab();
 }
  
-function setAffirm(i) { affirmIdx=i; renderAffirmations(); }
+// ── ACTIONS ──
+window.toggleTask=(key)=>{
+  if(!currentUser)return;
+  checked[key]=!checked[key];
+  clearTimeout(syncTimer);
+  syncTimer=setTimeout(fbSaveChecked,1200);
+  renderHeader();renderHabits();renderCourse();
+};
+window.toggleHabit=(id)=>{ expandedHabits[id]=!expandedHabits[id];renderHabits(); };
+window.toggleModule=(id)=>{ expandedModules[id]=!expandedModules[id];renderCourse(); };
+window.setAffirm=(i)=>{ affirmIdx=i;renderAffirmations(); };
+ 
+window.insertPrompt=(btn)=>{
+  const ta=document.getElementById('journal-textarea');if(!ta)return;
+  ta.value+='\n\n'+btn.textContent+'\n';
+  journalDraft.body=ta.value;ta.focus();triggerJournalSave();
+};
+window.toggleTag=(tag)=>{
+  const idx=journalDraft.tags.indexOf(tag);
+  if(idx>=0)journalDraft.tags.splice(idx,1);else journalDraft.tags.push(tag);
+  renderTagPicker();triggerJournalSave();
+};
+window.deleteJournalEntry=async(date)=>{
+  if(!confirm('Delete this entry?'))return;
+  journalEntries=journalEntries.filter(e=>e.date!==date);
+  await fbDeleteJournal(date);
+  if(date===todayKey()){journalDraft={mood:'',body:'',tags:[]};const ta=document.getElementById('journal-textarea');if(ta)ta.value='';}
+  renderJournalHistory();
+};
+ 
+function triggerJournalSave(){
+  const dot=document.getElementById('autosave-dot'),lbl=document.getElementById('autosave-label');
+  if(dot)dot.className='autosave-dot saving';if(lbl)lbl.textContent='saving…';
+  clearTimeout(journalSaveTimer);
+  journalSaveTimer=setTimeout(async()=>{
+    const entry={date:todayKey(),mood:journalDraft.mood,body:journalDraft.body,tags:journalDraft.tags,ts:Date.now()};
+    const idx=journalEntries.findIndex(e=>e.date===todayKey());
+    if(idx>=0)journalEntries[idx]=entry;else journalEntries.push(entry);
+    await fbSaveJournal(entry);
+    renderJournalHistory();
+  },900);
+}
+ 
+// Journal textarea wiring
+document.getElementById('journal-textarea').addEventListener('input',function(){
+  journalDraft.body=this.value;
+  const dot=document.getElementById('autosave-dot'),lbl=document.getElementById('autosave-label');
+  if(dot)dot.className='autosave-dot saving';if(lbl)lbl.textContent='typing…';
+  triggerJournalSave();
+});
+ 
+// EOD
+document.getElementById('btn-eod').addEventListener('click',()=>{
+  const pct=totalHabitPct();
+  document.getElementById('eod-date-label').textContent=new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});
+  document.getElementById('eod-score').textContent=pct+'%';
+  document.getElementById('eod-rating').textContent=getRating(pct);
+  document.getElementById('eod-score-bar').style.width=pct+'%';
+  document.getElementById('eod-habit-breakdown').innerHTML=DAILY_HABITS.map(h=>{const p=habitPct(h);return`<div class="modal-habit-row"><div class="modal-habit-name">${h.emoji} ${h.title}</div><div class="modal-habit-track"><div class="modal-habit-fill" style="width:${p}%;background:${h.color}"></div></div><div class="modal-habit-pct">${p}%</div></div>`;}).join('');
+  const missed=[];DAILY_HABITS.forEach(h=>{h.tasks.forEach((t,i)=>{if(!checked[`hab-${h.id}-${i}`])missed.push(`${h.emoji} ${t}`);});});
+  if(missed.length){document.getElementById('eod-miss-section').classList.remove('hidden');document.getElementById('eod-miss-list').innerHTML=missed.slice(0,6).map(m=>`<div class="miss-item">• ${m}</div>`).join('');}
+  else{document.getElementById('eod-miss-section').classList.add('hidden');}
+  const saved=history.find(e=>e.date===todayKey());
+  document.getElementById('eod-journal').value=saved?saved.note||'':'';
+  document.getElementById('eod-modal').classList.remove('hidden');
+});
+ 
+window.saveEOD=async()=>{
+  const pct=totalHabitPct();
+  const note=document.getElementById('eod-journal').value.trim();
+  const entry={date:todayKey(),pct,rating:getRating(pct),note,habitPcts:DAILY_HABITS.map(h=>habitPct(h))};
+  const idx=history.findIndex(e=>e.date===todayKey());
+  if(idx>=0)history[idx]=entry;else history.push(entry);
+  await fbSaveHistory(entry);
+  document.getElementById('eod-modal').classList.add('hidden');
+  renderProgressTab();renderHeader();
+};
+ 
+// Morning review
+document.getElementById('btn-morning').addEventListener('click',()=>{
+  const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
+  const yk=yesterday.toISOString().slice(0,10);
+  const ye=history.find(e=>e.date===yk);
+  document.getElementById('morning-yday-score').textContent=ye?ye.pct+'%':'—';
+  document.getElementById('morning-yday-rating').textContent=ye?ye.rating:'No entry saved';
+  document.getElementById('morning-yday-note').textContent=ye&&ye.note?`"${ye.note}"`:'' ;
+  const streak=calcStreak(),avg7=calcAvg(7),avgAll=calcAvg(999);
+  document.getElementById('mrev-streak').textContent=streak;
+  document.getElementById('mrev-avg7').textContent=avg7!==null?avg7+'%':'—';
+  document.getElementById('mrev-avgall').textContent=avgAll!==null?avgAll+'%':'—';
+  document.getElementById('mrev-days').textContent=history.length;
+  renderChart('mrev-chart');
+  const focuses=ye&&ye.habitPcts?DAILY_HABITS.map((h,i)=>({h,p:ye.habitPcts[i]||0})).sort((a,b)=>a.p-b.p).slice(0,3):DAILY_HABITS.slice(0,3).map(h=>({h,p:0}));
+  document.getElementById('morning-focus').innerHTML=focuses.map((f,idx2)=>`<div class="focus-card" style="border-left-color:${f.h.color}"><div class="focus-num">Focus ${idx2+1}</div><div class="focus-text">${f.h.emoji} ${f.h.title} — ${f.p<100?'Push for full completion today':'Maintain your momentum!'}</div></div>`).join('');
+  document.getElementById('morning-modal').classList.remove('hidden');
+});
  
 // Tabs
 document.querySelectorAll('.tab-btn').forEach(btn=>{
@@ -687,280 +880,18 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     ['habits','course','affirmations','journal','progress'].forEach(t=>{
       document.getElementById('tab-'+t).classList.toggle('hidden',t!==tab);
     });
-    if(tab==='progress') renderProgressTab();
-    if(tab==='journal') renderJournalTab();
+    if(tab==='progress')renderProgressTab();
+    if(tab==='journal')renderJournalTab();
   });
 });
- 
-// ═══════════════════════════════════════════
-// END OF DAY MODAL
-// ═══════════════════════════════════════════
-function openEOD() {
-  const pct=totalHabitPct();
-  document.getElementById('eod-date-label').textContent=new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});
-  document.getElementById('eod-score').textContent=pct+'%';
-  document.getElementById('eod-rating').textContent=getRating(pct);
-  document.getElementById('eod-score-bar').style.width=pct+'%';
- 
-  // habit breakdown
-  document.getElementById('eod-habit-breakdown').innerHTML=DAILY_HABITS.map(h=>{
-    const p=habitPct(h);
-    return `<div class="modal-habit-row">
-      <div class="modal-habit-name">${h.emoji} ${h.title}</div>
-      <div class="modal-habit-track"><div class="modal-habit-fill" style="width:${p}%;background:${h.color}"></div></div>
-      <div class="modal-habit-pct">${p}%</div>
-    </div>`;
-  }).join('');
- 
-  // missed tasks
-  const missed=[];
-  DAILY_HABITS.forEach(h=>{
-    h.tasks.forEach((t,i)=>{ if(!checked[`hab-${h.id}-${i}`]) missed.push(`${h.emoji} ${t}`); });
-  });
-  if(missed.length){
-    document.getElementById('eod-miss-section').classList.remove('hidden');
-    document.getElementById('eod-miss-list').innerHTML=missed.slice(0,6).map(m=>`<div class="miss-item">• ${m}</div>`).join('');
-  } else {
-    document.getElementById('eod-miss-section').classList.add('hidden');
-  }
- 
-  // restore saved note
-  const saved=history.find(e=>e.date===todayKey());
-  document.getElementById('eod-journal').value=saved?saved.note||'':'';
- 
-  document.getElementById('eod-modal').classList.remove('hidden');
-}
- 
-document.getElementById('btn-eod').addEventListener('click',openEOD);
-document.getElementById('eod-close').addEventListener('click',()=>document.getElementById('eod-modal').classList.add('hidden'));
-document.getElementById('eod-save').addEventListener('click',()=>{
-  const pct=totalHabitPct();
-  const note=document.getElementById('eod-journal').value.trim();
-  const entry={date:todayKey(),pct,rating:getRating(pct),note,habitPcts:DAILY_HABITS.map(h=>habitPct(h))};
-  const idx=history.findIndex(e=>e.date===todayKey());
-  if(idx>=0) history[idx]=entry; else history.push(entry);
-  saveHistory();
-  document.getElementById('eod-modal').classList.add('hidden');
-  renderAll();
-});
- 
-// ═══════════════════════════════════════════
-// MORNING REVIEW MODAL
-// ═══════════════════════════════════════════
-function openMorning() {
-  const yesterday=new Date(); yesterday.setDate(yesterday.getDate()-1);
-  const ydayKey=yesterday.toISOString().slice(0,10);
-  const ydayEntry=history.find(e=>e.date===ydayKey);
- 
-  if(ydayEntry){
-    document.getElementById('morning-yday-score').textContent=ydayEntry.pct+'%';
-    document.getElementById('morning-yday-rating').textContent=ydayEntry.rating;
-    document.getElementById('morning-yday-note').textContent=ydayEntry.note?`"${ydayEntry.note}"`:'No note recorded.';
-  } else {
-    document.getElementById('morning-yday-score').textContent='—';
-    document.getElementById('morning-yday-rating').textContent='No entry saved';
-    document.getElementById('morning-yday-note').textContent='';
-  }
- 
-  const streak=calcStreak(), avg7=calcAvg(7), avgAll=calcAvg(999);
-  document.getElementById('mrev-streak').textContent=streak;
-  document.getElementById('mrev-avg7').textContent=avg7!==null?avg7+'%':'—';
-  document.getElementById('mrev-avgall').textContent=avgAll!==null?avgAll+'%':'—';
-  document.getElementById('mrev-days').textContent=history.length;
- 
-  renderChart('mrev-chart');
- 
-  // 3 focus reminders — pick lowest-scoring habits from yesterday
-  const focuses=ydayEntry && ydayEntry.habitPcts
-    ? DAILY_HABITS.map((h,i)=>({h,p:ydayEntry.habitPcts[i]||0})).sort((a,b)=>a.p-b.p).slice(0,3)
-    : DAILY_HABITS.slice(0,3).map(h=>({h,p:0}));
-  document.getElementById('morning-focus').innerHTML=focuses.map((f,i)=>`
-    <div class="focus-card" style="border-left-color:${f.h.color}">
-      <div class="focus-num">Focus ${i+1}</div>
-      <div class="focus-text">${f.h.emoji} ${f.h.title} — ${f.p<100?'Push for full completion today':'Maintain your momentum!'}</div>
-    </div>`).join('');
- 
-  document.getElementById('morning-modal').classList.remove('hidden');
-}
- 
-document.getElementById('btn-morning').addEventListener('click',openMorning);
-document.getElementById('morning-close').addEventListener('click',()=>document.getElementById('morning-modal').classList.add('hidden'));
  
 // close modals on overlay click
 ['eod-modal','morning-modal'].forEach(id=>{
-  document.getElementById(id).addEventListener('click',function(e){
-    if(e.target===this) this.classList.add('hidden');
-  });
+  document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
 });
  
-// affirmation auto-rotate
-setInterval(()=>{ affirmIdx=(affirmIdx+1)%AFFIRMATIONS.length; renderAffirmations(); },5000);
- 
-// ═══════════════════════════════════════════
-// JOURNAL
-// ═══════════════════════════════════════════
-const JOURNAL_PROMPTS = [
-  "What's one way I honored my husband today?",
-  "Where did I struggle to be soft today?",
-  "What am I most grateful for right now?",
-  "What does my husband need from me this week?",
-  "How did I respond when things didn't go my way?",
-  "What is God teaching me in this season?",
-  "Where did I feel most at peace today?",
-  "What would I do differently if I could replay today?",
-  "How am I growing in trust and surrender?",
-  "What's one thing I love about my marriage?",
-];
- 
-const JOURNAL_TAGS = ["gratitude","growth","struggle","victory","prayer","marriage","emotions","boundaries","love","faith"];
- 
-let journalEntries = []; // [{date, mood, body, tags, ts}]
-let journalDraft = { mood:'', body:'', tags:[] };
-let journalSaveTimer = null;
- 
-function loadJournal() {
-  try {
-    const j = localStorage.getItem('sub_journal');
-    if(j) journalEntries = JSON.parse(j);
-    // load today's draft if exists
-    const today = journalEntries.find(e=>e.date===todayKey());
-    if(today){ journalDraft={mood:today.mood||'',body:today.body||'',tags:today.tags||[]}; }
-  } catch(e){}
-}
- 
-function saveJournalEntry() {
-  const dot = document.getElementById('autosave-dot');
-  const lbl = document.getElementById('autosave-label');
-  if(dot){ dot.className='autosave-dot saving'; }
-  if(lbl) lbl.textContent='saving…';
-  clearTimeout(journalSaveTimer);
-  journalSaveTimer = setTimeout(()=>{
-    const entry = {date:todayKey(), mood:journalDraft.mood, body:journalDraft.body, tags:journalDraft.tags, ts:Date.now()};
-    const idx = journalEntries.findIndex(e=>e.date===todayKey());
-    if(idx>=0) journalEntries[idx]=entry; else journalEntries.push(entry);
-    try{ localStorage.setItem('sub_journal', JSON.stringify(journalEntries)); } catch(e){}
-    if(dot){ dot.className='autosave-dot saved'; }
-    if(lbl) lbl.textContent='saved ✓';
-    renderJournalHistory();
-  }, 800);
-}
- 
-function renderJournalTab() {
-  // date display
-  const dd = document.getElementById('journal-date-display');
-  if(dd) dd.textContent = new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
- 
-  // mood picker
-  document.querySelectorAll('.mood-btn').forEach(btn=>{
-    btn.classList.toggle('selected', btn.dataset.mood===journalDraft.mood);
-    btn.onclick=()=>{
-      journalDraft.mood = journalDraft.mood===btn.dataset.mood ? '' : btn.dataset.mood;
-      document.querySelectorAll('.mood-btn').forEach(b=>b.classList.toggle('selected',b.dataset.mood===journalDraft.mood));
-      saveJournalEntry();
-    };
-  });
- 
-  // prompt chips (show 4 random)
-  const chips = document.getElementById('prompt-chips');
-  if(chips && !chips.dataset.rendered){
-    chips.dataset.rendered='1';
-    const picks=[...JOURNAL_PROMPTS].sort(()=>Math.random()-.5).slice(0,4);
-    chips.innerHTML=picks.map(p=>`<button class="prompt-chip" onclick="insertPrompt(this)">${p}</button>`).join('');
-  }
- 
-  // tag picker
-  const tagPicker = document.getElementById('tag-picker');
-  if(tagPicker){
-    tagPicker.innerHTML = JOURNAL_TAGS.map(t=>`
-      <button onclick="toggleTag('${t}')" style="font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid ${journalDraft.tags.includes(t)?'#c9829a':'#e4d4dc'};background:${journalDraft.tags.includes(t)?'#fdf0f5':'#fff'};color:${journalDraft.tags.includes(t)?'#9a3860':'#9a7080'};cursor:pointer;font-family:Georgia,serif;transition:all .2s;">
-        ${t}
-      </button>`).join('');
-  }
- 
-  // textarea
-  const ta = document.getElementById('journal-textarea');
-  if(ta && ta.value !== journalDraft.body) ta.value = journalDraft.body||'';
- 
-  renderJournalHistory();
-}
- 
-function insertPrompt(btn) {
-  const ta = document.getElementById('journal-textarea');
-  if(!ta) return;
-  const prompt = '\n\n'+btn.textContent+'\n';
-  ta.value += prompt;
-  journalDraft.body = ta.value;
-  ta.focus();
-  saveJournalEntry();
-}
- 
-function toggleTag(tag) {
-  const idx=journalDraft.tags.indexOf(tag);
-  if(idx>=0) journalDraft.tags.splice(idx,1); else journalDraft.tags.push(tag);
-  const tagPicker=document.getElementById('tag-picker');
-  if(tagPicker){
-    tagPicker.innerHTML=JOURNAL_TAGS.map(t=>`
-      <button onclick="toggleTag('${t}')" style="font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid ${journalDraft.tags.includes(t)?'#c9829a':'#e4d4dc'};background:${journalDraft.tags.includes(t)?'#fdf0f5':'#fff'};color:${journalDraft.tags.includes(t)?'#9a3860':'#9a7080'};cursor:pointer;font-family:Georgia,serif;transition:all .2s;">
-        ${t}
-      </button>`).join('');
-  }
-  saveJournalEntry();
-}
- 
-function deleteJournalEntry(date) {
-  if(!confirm('Delete this entry?')) return;
-  journalEntries=journalEntries.filter(e=>e.date!==date);
-  try{ localStorage.setItem('sub_journal', JSON.stringify(journalEntries)); } catch(e){}
-  if(date===todayKey()){ journalDraft={mood:'',body:'',tags:[]}; const ta=document.getElementById('journal-textarea'); if(ta) ta.value=''; }
-  renderJournalHistory();
-}
- 
-function renderJournalHistory() {
-  const el=document.getElementById('journal-history');
-  if(!el) return;
-  const q=(document.getElementById('journal-search')||{}).value||'';
-  const sorted=[...journalEntries].sort((a,b)=>b.date.localeCompare(a.date));
-  const filtered=q ? sorted.filter(e=>e.body.toLowerCase().includes(q.toLowerCase())||e.tags.some(t=>t.includes(q.toLowerCase()))) : sorted;
-  const past=filtered.filter(e=>e.date!==todayKey());
-  if(!past.length){
-    el.innerHTML=`<div style="font-size:13px;color:#b09090;font-style:italic;padding:12px 4px;">${q?'No entries match your search.':'No past entries yet — start writing today! 🌸'}</div>`;
-    return;
-  }
-  el.innerHTML=past.map(e=>`
-    <div class="journal-entry-card">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-        <div class="journal-entry-date">
-          ${e.mood?`<span class="journal-entry-mood">${e.mood}</span>`:''}
-          ${new Date(e.date+'T00:00:00').toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
-        </div>
-        <button class="del-btn" onclick="deleteJournalEntry('${e.date}')" title="Delete entry">🗑</button>
-      </div>
-      <div class="journal-entry-body">${e.body ? (e.body.length>220 ? e.body.slice(0,220)+'…' : e.body) : '<span style="color:#c4a4b4;font-style:italic;">No text written.</span>'}</div>
-      ${e.tags&&e.tags.length?`<div class="journal-entry-tags">${e.tags.map(t=>`<span class="journal-tag">${t}</span>`).join('')}</div>`:''}
-    </div>`).join('');
-}
- 
-// Wire textarea autosave
-document.addEventListener('DOMContentLoaded',()=>{
-  const ta=document.getElementById('journal-textarea');
-  if(ta){
-    ta.addEventListener('input',()=>{
-      journalDraft.body=ta.value;
-      const dot=document.getElementById('autosave-dot');
-      const lbl=document.getElementById('autosave-label');
-      if(dot) dot.className='autosave-dot saving';
-      if(lbl) lbl.textContent='typing…';
-      saveJournalEntry();
-    });
-  }
-});
- 
-// ═══════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════
-loadState();
-loadJournal();
-renderAll();
+// affirmation rotate
+setInterval(()=>{affirmIdx=(affirmIdx+1)%AFFIRMATIONS.length;renderAffirmations();},5000);
 </script>
 </body>
 </html>
